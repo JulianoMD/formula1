@@ -1,0 +1,90 @@
+<section class="products-page">
+
+  <div class="container">
+
+    <div class="page-heading">
+
+      <div>
+        <p class="eyebrow">CATÁLOGO</p>
+
+        <h1>Miniaturas de Fórmula 1</h1>
+
+        <p>
+          Escolha um modelo para adicionar ao seu carrinho.
+        </p>
+      </div>
+
+      <a routerLink="/carrinho" class="cart-button">
+        Carrinho ({{ carrinhoService.quantidade() }})
+      </a>
+
+    </div>
+
+    @if (mensagem) {
+
+      <div class="message">
+        {{ mensagem }}
+      </div>
+
+    }
+
+    <div class="product-grid">
+
+      @for (
+        produto of produtosService.listar();
+        track produto.id
+      ) {
+
+        <article class="product-card">
+
+          <div
+            class="product-image"
+            [style.background]="produto.cor"
+          >
+
+            <span class="scale">
+              1:43
+            </span>
+
+          </div>
+
+          <div class="product-body">
+
+            <p class="category">
+              {{ produto.categoria }}
+            </p>
+
+            <h2>
+              {{ produto.nome }}
+            </h2>
+
+            <p class="description">
+              {{ produto.descricao }}
+            </p>
+
+            <div class="product-footer">
+
+              <strong>
+                {{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}
+              </strong>
+
+              <button
+                type="button"
+                (click)="adicionar(produto)"
+              >
+                Adicionar
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

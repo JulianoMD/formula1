@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="container header-content">
+
+    <a routerLink="/" class="logo">
+      <span class="logo-mark">🏁</span>
+      <span>GRID <strong>&</strong> SCALE</span>
+    </a>
+
+    <nav class="nav">
+
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Início
+      </a>
+
+      <a routerLink="/produtos" routerLinkActive="active">
+        Modelos
+      </a>
+
+      <a routerLink="/carrinho" routerLinkActive="active" class="cart-link">
+        Carrinho
+
+        <span class="cart-badge">
+          {{ carrinhoService.quantidade() }}
+        </span>
+      </a>
+
+    </nav>
+
+  </div>
+</header>
