@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Produto } from './produtos';
+import { Produto } from '../model/produto';
+import { ItemCarrinho } from '../model/item-carrinho';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CarrinhoService {
-  private itens: Produto[] = [];
+  itens: ItemCarrinho[] = [];
 
   adicionar(produto: Produto) {
-    this.itens.push(produto);
-  }
-
-  remover(id: number) {
-    const indice = this.itens.findIndex((item) => item.id === id);
-
-    if (indice !== -1) {
-      this.itens.splice(indice, 1);
+    const existente = this.itens.find(i => i.produto.id === produto.id);
+    if (existente) {
+      existente.quantidade++;
+    } else {
+      this.itens.push({ produto, quantidade: 1 });
     }
   }
 
-  listar() {
-    return this.itens;
+  remover(id: number) {
+    this.itens = this.itens.filter(i => i.produto.id !== id);
   }
 
-  quantidade() {
-    return this.itens.length;
+  total(): number {
+    return this.itens.reduce((soma, i) => soma + i.produto.preco * i.quantidade, 0);
   }
 
-  total() {
-    return this.itens.reduce((soma, item) => soma + item.preco, 0);
+  quantidade(): number {
+    return this.itens.reduce((soma, i) => soma + i.quantidade, 0);
   }
 
   limpar() {
