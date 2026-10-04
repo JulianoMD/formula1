@@ -1,0 +1,103 @@
+.clientes-container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 54px 0 80px;
+}
+
+.clientes-container h1 {
+  margin: 0 0 28px;
+  font-size: clamp(34px, 5vw, 52px);
+  color: #151515;
+}
+
+.clientes-container h2 {
+  margin: 44px 0 20px;
+  font-size: 26px;
+  color: #151515;
+}
+
+/* Formulário */
+.clientes-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 520px;
+  padding: 22px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #e4e4e4;
+}
+
+.clientes-container label {
+  margin-top: 8px;
+  color: #777;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.clientes-container input {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  color: #151515;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.clientes-container input::placeholder {
+  color: #aaa;
+}
+
+.clientes-container input:focus {
+  border-color: #d71920;
+  box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.12);
+}
+
+.clientes-container form button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #d71920;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.clientes-container form button:hover {
+  background: #b9151b;
+}
+
+/* Bloco de cada cliente */
+.cliente {
+  margin-bottom: 12px;
+  padding: 14px 18px;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  background: white;
+}
+
+.cliente p {
+  margin: 4px 0;
+  color: #333;
+}
+
+.cliente p strong {
+  margin-right: 4px;
+  color: #777;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .clientes-container form {
+    max-width: 100%;
+  }
+}

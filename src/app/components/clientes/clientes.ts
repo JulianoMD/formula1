@@ -60,15 +60,7 @@ editarCliente(cliente: any) {
   this.email = cliente.email;
   this.senha = cliente.senha;
 
-}
 
-excluirCliente(cliente: any) {
-
-  const indice = this.clientes.indexOf(cliente);
-
-  this.clientes.splice(indice, 1);
-
-  alert('Cliente excluído com sucesso!');
 
 }
 
