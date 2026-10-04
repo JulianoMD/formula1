@@ -40,9 +40,9 @@
         <strong>{{ carrinhoService.total() | currency:'BRL':'symbol':'1.2-2' }}</strong>
       </div>
 
-      <button type="button" class="checkout-button" (click)="finalizarCompra()">
-        Finalizar compra
-      </button>
+    <a routerLink="/finalizar-compra" class="checkout-button">
+       Finalizar compra
+    </a>
     </aside>
   </div>
 }

@@ -1,0 +1,32 @@
+.login-container {
+  width: 80%;
+  max-width: 400px;
+  margin: 60px auto;
+}
+
+.login-container h1 {
+  margin-bottom: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  background-color: #d71920;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #b9151b;
+}

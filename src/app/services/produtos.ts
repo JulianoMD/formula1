@@ -1,18 +1,11 @@
 import { Injectable } from '@angular/core';
-
-export interface Produto {
-  id: number;
-  nome: string;
-  categoria: string;
-  preco: number;
-  descricao: string;
-  cor: string;
-}
+import { Produto } from '../model/produto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProdutosService {
+
   private produtos: Produto[] = [
     {
       id: 1,
@@ -68,7 +61,36 @@ export class ProdutosService {
     return this.produtos;
   }
 
+  adicionar(produto: Produto) {
+    this.produtos.push(produto);
+  }
+
+  alterar(produtoAlterado: Produto) {
+
+    const indice = this.produtos.findIndex(
+      produto => produto.id === produtoAlterado.id
+    );
+
+    if (indice !== -1) {
+      this.produtos[indice] = produtoAlterado;
+    }
+
+  }
+
+  excluir(id: number) {
+
+    const indice = this.produtos.findIndex(
+      produto => produto.id === id
+    );
+
+    if (indice !== -1) {
+      this.produtos.splice(indice, 1);
+    }
+
+  }
+
   buscarPorId(id: number) {
     return this.produtos.find((produto) => produto.id === id);
   }
+
 }

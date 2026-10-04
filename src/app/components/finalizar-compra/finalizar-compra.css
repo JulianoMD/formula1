@@ -1,0 +1,31 @@
+.finalizar-container {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.finalizar-container h1 {
+  margin-bottom: 20px;
+}
+
+.finalizar-container p {
+  margin-bottom: 30px;
+}
+
+.opcoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.opcoes a {
+  padding: 12px 20px;
+  background: #d71920;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.opcoes a:hover {
+  background: #b9151b;
+}

@@ -12,10 +12,4 @@ import { CarrinhoService } from '../../services/carrinho';
 })
 export class Carrinho {
   carrinhoService = inject(CarrinhoService);
-
-  finalizarCompra() {
-    alert('Compra simulada com sucesso!');
-
-    this.carrinhoService.limpar();
-  }
 }
