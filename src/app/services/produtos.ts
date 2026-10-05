@@ -41,20 +41,20 @@ export class ProdutosService {
       cor: '#14532d',
     },
 
-    {
+        {
       id: 5,
-      nome: 'Blue Falcon 11',
-      categoria: '1:43 · Série Velocity',
-      preco: 154.9,
+      nome: 'Mercedes F1 W11',
+      categoria: '1:43 · Coleção Premium',
+      preco: 197.0,
       descricao: 'Miniatura azul com linhas inspiradas nos carros modernos de corrida.',
       cor: '#1d4ed8',
     },
     {
       id: 6,
-      nome: 'Titan Motorsport 22',
+      nome: 'Red Bull RB19',
       categoria: '1:43 · Edição Limitada',
-      preco: 219.9,
-      descricao: 'Modelo especial pensado para ficar em destaque na estante.',
+      preco: 167.9,
+      descricao: 'Carro de Max Verstappen em 2023, que venceu 21 das 22 corridas da temporada, o maior número de vitórias de um carro em um único ano.',
       cor: '#374151',
     },
   ];
