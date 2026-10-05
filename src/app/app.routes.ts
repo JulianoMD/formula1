@@ -5,6 +5,7 @@ import { Carrinho } from './components/carrinho/carrinho';
 import { Login } from './components/login/login';
 import { Clientes } from './components/clientes/clientes';
 import { FinalizarCompra } from './components/finalizar-compra/finalizar-compra';
+import { ManutencaoProdutos } from './components/manutencao-produtos/manutencao-produtos';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
   path: 'finalizar-compra',
   component: FinalizarCompra,
+  },
+  {
+  path: 'manutencao-produtos',
+  component: ManutencaoProdutos,
   },
   {
     path: '**',

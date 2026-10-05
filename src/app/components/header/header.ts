@@ -11,4 +11,8 @@ import { CarrinhoService } from '../../services/carrinho';
 })
 export class Header {
   carrinhoService = inject(CarrinhoService);
+
+  isAdmin(): boolean {
+  return sessionStorage.getItem('tipoUsuario') === 'admin';
+}
 }

@@ -2,6 +2,8 @@
 
   <h1>Manutenção de Produtos</h1>
 
+  <h2>Cadastrar produto</h2>
+
   <form>
 
     <label for="nome">Nome</label>
@@ -22,14 +24,6 @@
       [(ngModel)]="categoria"
     >
 
-    <label for="preco">Preço</label>
-    <input
-      id="preco"
-      name="preco"
-      type="number"
-      [(ngModel)]="preco"
-    >
-
     <label for="descricao">Descrição</label>
     <textarea
       id="descricao"
@@ -37,6 +31,14 @@
       placeholder="Digite a descrição"
       [(ngModel)]="descricao"
     ></textarea>
+
+    <label for="preco">Preço</label>
+    <input
+      id="preco"
+      name="preco"
+      type="number"
+      [(ngModel)]="preco"
+    >
 
     <label for="cor">Cor</label>
     <input
@@ -68,25 +70,25 @@
 
       <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
 
-      <p><strong>Preço:</strong> {{ produto.preco }}</p>
-
       <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
 
+      <p><strong>Preço:</strong> {{ produto.preco }}</p>
+
       <p><strong>Cor:</strong> {{ produto.cor }}</p>
-
       <button
-        type="button"
-        (click)="editarProduto(produto)"
-      >
-        Alterar
-      </button>
+      
+      type="button"
+      (click)="editarProduto(produto)"
+    >
+      Alterar
+    </button>
 
-      <button
-        type="button"
-        (click)="excluirProduto(produto)"
-      >
-        Excluir
-      </button>
+    <button
+  type="button"
+  (click)="excluirProduto(produto)"
+>
+  Excluir
+</button>
 
     </div>
 

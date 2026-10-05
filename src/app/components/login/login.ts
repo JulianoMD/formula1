@@ -16,6 +16,7 @@ export class Login {
 
   email: string = '';
   senha: string = '';
+  tipoUsuario: string = '';
 
   botaoDesabilitado: boolean = true;
 
@@ -33,6 +34,10 @@ fazerLogin() {
 
   if (this.email === 'admin@email.com' && this.senha === '123') {
 
+    this.tipoUsuario = 'admin';
+
+    sessionStorage.setItem('tipoUsuario', 'admin');
+
     alert('Bem-vindo, administrador!');
 
     this.router.navigate(['/']);
@@ -46,6 +51,10 @@ fazerLogin() {
     );
 
     if (cliente) {
+
+      this.tipoUsuario = 'cliente';
+
+      sessionStorage.setItem('tipoUsuario', 'cliente');
 
       alert(`Bem-vindo, ${cliente.nome}!`);
 

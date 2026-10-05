@@ -1,0 +1,110 @@
+.manutencao-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.manutencao-container h1 {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.manutencao-container h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+form button {
+  width: fit-content;
+  margin-top: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d71920;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #b9151b;
+}
+
+.produto {
+  background: white;
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.produto p {
+  margin: 6px 0;
+}
+
+.produto button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.produto button:first-of-type {
+  background-color: #212f3c;
+  color: white;
+}
+
+.produto button:last-of-type {
+  background-color: #d71920;
+  color: white;
+}
+
+.manutencao-container h1 {
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+  border-left: 5px solid #d71920;
+  padding-left: 12px;
+}
+
+.manutencao-container h2 {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+}
+
+.manutencao-container label {
+  font-family: Arial, sans-serif;
+}
+
+.manutencao-container input,
+.manutencao-container textarea,
+.manutencao-container button {
+  font-family: Arial, sans-serif;
+}

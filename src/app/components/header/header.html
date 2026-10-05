@@ -19,6 +19,12 @@
         Modelos
       </a>
 
+      @if (isAdmin()) {
+  <a routerLink="/manutencao-produtos" routerLinkActive="active">
+    Manutenção
+  </a>
+}
+
       <a routerLink="/carrinho" routerLinkActive="active" class="cart-link">
         Carrinho
 
@@ -28,7 +34,7 @@
       </a>
 
       <a routerLink="/login" routerLinkActive="active">
-        login
+        Login
       </a>
 
     </nav>
