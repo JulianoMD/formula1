@@ -1,10 +1,10 @@
-.clientes-container {
+.manutencao-container {
   width: 90%;
   max-width: 1100px;
   margin: 40px auto;
 }
 
-.clientes-container h1 {
+.manutencao-container h1 {
   margin-bottom: 30px;
   font-family: Arial, sans-serif;
   font-size: 32px;
@@ -12,7 +12,7 @@
   padding-left: 12px;
 }
 
-.clientes-container h2 {
+.manutencao-container h2 {
   margin-top: 30px;
   margin-bottom: 20px;
   font-family: Arial, sans-serif;
@@ -22,25 +22,19 @@
 form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
+  gap: 10px 15px;
   background: white;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.campo label {
+label {
   font-family: Arial, sans-serif;
   font-weight: bold;
 }
 
-.campo input {
+input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -48,9 +42,8 @@ form {
 }
 
 form button {
-  grid-column: 1 / -1;
-  justify-self: start;
-  margin-top: 5px;
+  width: fit-content;
+  margin-top: 10px;
   padding: 12px 25px;
   border: none;
   border-radius: 5px;
@@ -66,6 +59,7 @@ form button:hover {
 
 .cliente {
   background: white;
+  margin-bottom: 15px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -74,4 +68,29 @@ form button:hover {
 .cliente p {
   margin: 6px 0;
   font-family: Arial, sans-serif;
+}
+
+.cliente button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cliente button:first-of-type {
+  background-color: #212f3c;
+  color: white;
+}
+
+.cliente button:last-of-type {
+  background-color: #d71920;
+  color: white;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

@@ -6,14 +6,32 @@
 
   <div class="opcoes">
 
-    <a routerLink="/login">
+    <button type="button" (click)="irParaLogin()">
       Já sou cadastrado
-    </a>
+    </button>
 
-    <a routerLink="/clientes">
+    <button type="button" (click)="irParaCadastro()">
       Não sou cadastrado
-    </a>
+    </button>
 
   </div>
+
+  @if (clienteLogado) {
+
+    <div class="confirmacao">
+
+      <h2>Compra pronta para finalizar</h2>
+
+      <p>
+        Você está logado. Clique abaixo para confirmar sua compra.
+      </p>
+
+      <button type="button" (click)="confirmarCompra()">
+        Confirmar compra
+      </button>
+
+    </div>
+
+  }
 
 </div>

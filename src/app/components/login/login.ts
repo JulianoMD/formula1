@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ClientesService } from '../../services/clientes';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -55,10 +55,23 @@ fazerLogin() {
       this.tipoUsuario = 'cliente';
 
       sessionStorage.setItem('tipoUsuario', 'cliente');
+      sessionStorage.setItem('emailUsuario', cliente.email);
 
       alert(`Bem-vindo, ${cliente.nome}!`);
 
-      this.router.navigate(['/']);
+      const finalizandoCompra = sessionStorage.getItem('finalizandoCompra');
+
+      if (finalizandoCompra === 'true') {
+
+        sessionStorage.removeItem('finalizandoCompra');
+
+        this.router.navigate(['/finalizar-compra']);
+
+      } else {
+
+        this.router.navigate(['/']);
+
+      }
 
     } else {
 
@@ -69,10 +82,5 @@ fazerLogin() {
   }
 
 }
-  }
-
-
-
-
-
+}
 

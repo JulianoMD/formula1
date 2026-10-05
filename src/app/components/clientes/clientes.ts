@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from '../../services/clientes';
 
@@ -8,33 +8,30 @@ import { ClientesService } from '../../services/clientes';
   templateUrl: './clientes.html',
   styleUrl: './clientes.css',
 })
-export class Clientes {
+export class Clientes implements OnInit {
+
+  clientesService = inject(ClientesService);
 
   nome: string = '';
   email: string = '';
   senha: string = '';
 
-    clientesService = inject(ClientesService);
+  clienteLogado: any = null;
 
-  get clientes() {
-    return this.clientesService.clientes;
+  ngOnInit(): void {
+
+    const emailUsuario = sessionStorage.getItem('emailUsuario');
+
+    if (emailUsuario) {
+
+      this.clienteLogado = this.clientesService.clientes.find(
+        cliente => cliente.email === emailUsuario
+      );
+
+    }
   }
-  
-  clienteEditando: any = null;
 
-cadastrarCliente() {
-
-  if (this.clienteEditando) {
-
-    this.clienteEditando.nome = this.nome;
-    this.clienteEditando.email = this.email;
-    this.clienteEditando.senha = this.senha;
-
-    alert('Cliente alterado com sucesso!');
-
-    this.clienteEditando = null;
-
-  } else {
+  cadastrarCliente() {
 
     const cliente = {
       nome: this.nome,
@@ -42,26 +39,17 @@ cadastrarCliente() {
       senha: this.senha
     };
 
-    this.clientes.push(cliente);
-
-    console.log('Clientes no Service:', this.clientes);
+    this.clientesService.clientes.push(cliente);
 
     alert('Cliente cadastrado com sucesso!');
 
+    this.clienteLogado = cliente;
+
+    sessionStorage.setItem('tipoUsuario', 'cliente');
+    sessionStorage.setItem('emailUsuario', cliente.email);
+
+    this.nome = '';
+    this.email = '';
+    this.senha = '';
   }
-
-}
-
-editarCliente(cliente: any) {
-  
-   this.clienteEditando = cliente;
-
-  this.nome = cliente.nome;
-  this.email = cliente.email;
-  this.senha = cliente.senha;
-
-
-
-}
-
 }

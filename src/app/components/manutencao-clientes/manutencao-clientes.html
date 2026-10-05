@@ -1,8 +1,10 @@
-<div class="clientes-container">
+<div class="manutencao-container">
 
-  <h1>Cadastro de Clientes</h1>
+  <h1>Manutenção de Clientes</h1>
 
-<form>
+  <h2>Cadastrar cliente</h2>
+
+ <form>
 
   <div class="campo">
     <label for="nome">Nome</label>
@@ -40,21 +42,27 @@
 
 </form>
 
-  @if (clienteLogado) {
+  <h2>Clientes cadastrados</h2>
 
-    <h2>Meus dados cadastrais</h2>
+  @for (cliente of clientes; track cliente.email) {
 
     <div class="cliente">
 
-      <p>
-        <strong>Nome:</strong>
-        {{ clienteLogado.nome }}
-      </p>
+      <p><strong>Nome:</strong> {{ cliente.nome }}</p>
 
-      <p>
-        <strong>E-mail:</strong>
-        {{ clienteLogado.email }}
-      </p>
+      <p><strong>E-mail:</strong> {{ cliente.email }}</p>
+
+      <button
+        type="button"
+        (click)="editarCliente(cliente)">
+        Alterar
+      </button>
+
+      <button
+        type="button"
+        (click)="excluirCliente(cliente)">
+        Excluir
+      </button>
 
     </div>
 
