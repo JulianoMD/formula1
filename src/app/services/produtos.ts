@@ -46,8 +46,8 @@ export class ProdutosService {
       nome: 'Mercedes F1 W11',
       categoria: '1:43 · Coleção Premium',
       preco: 197.0,
-      descricao: 'Miniatura azul com linhas inspiradas nos carros modernos de corrida.',
-      cor: '#1d4ed8',
+      descricao: 'Carro de Lewis Hamilton em 2020, com pintura preta. Venceu 13 das 17 corridas e deu a Hamilton seu sétimo título, igualando o recorde de Schumacher.',
+      cor: '#111111',
     },
     {
       id: 6,

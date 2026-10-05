@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CarrinhoService } from '../../services/carrinho';
 
 @Component({
   selector: 'app-finalizar-compra',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './finalizar-compra.html',
   styleUrl: './finalizar-compra.css',
 })

@@ -37,6 +37,20 @@ export class ManutencaoClientes implements OnInit {
 
   cadastrarCliente() {
 
+    if (this.nome.trim() === '' || this.email.trim() === '' || this.senha.trim() === '') {
+      alert('Preencha todos os campos.');
+      return;
+    }
+
+    const emailJaExiste = this.clientes.find(
+      cliente => cliente.email === this.email && cliente !== this.clienteEditando
+    );
+
+    if (emailJaExiste) {
+      alert('Este e-mail já está cadastrado!');
+      return;
+    }
+
     if (this.clienteEditando) {
 
       this.clienteEditando.nome = this.nome;

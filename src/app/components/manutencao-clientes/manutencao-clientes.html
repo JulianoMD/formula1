@@ -37,7 +37,11 @@
   </div>
 
   <button type="button" (click)="cadastrarCliente()">
-    Cadastrar
+    @if (clienteEditando) {
+      Salvar alteração
+    } @else {
+      Cadastrar
+    }
   </button>
 
 </form>

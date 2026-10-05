@@ -33,6 +33,20 @@ export class Clientes implements OnInit {
 
   cadastrarCliente() {
 
+    if (this.nome.trim() === '' || this.email.trim() === '' || this.senha.trim() === '') {
+      alert('Preencha todos os campos.');
+      return;
+    }
+
+    const emailJaExiste = this.clientesService.clientes.find(
+      cliente => cliente.email === this.email
+    );
+
+    if (emailJaExiste) {
+      alert('Este e-mail já está cadastrado! Faça login.');
+      return;
+    }
+
     const cliente = {
       nome: this.nome,
       email: this.email,

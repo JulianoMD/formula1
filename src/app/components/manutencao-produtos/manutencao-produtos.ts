@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProdutosService } from '../../services/produtos';
 import { Produto } from '../../model/produto';
@@ -6,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manutencao-produtos',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './manutencao-produtos.html',
   styleUrl: './manutencao-produtos.css',
 })
@@ -41,6 +42,11 @@ export class ManutencaoProdutos implements OnInit {
 
 cadastrarProduto() {
 
+  if (this.nome.trim() === '' || this.preco <= 0) {
+    alert('Preencha o nome e um preço maior que zero.');
+    return;
+  }
+
   if (this.produtoEditando) {
 
     const produtoAlterado: Produto = {
@@ -60,8 +66,15 @@ cadastrarProduto() {
 
   } else {
 
+    let maiorId = 0;
+    for (const p of this.produtos) {
+      if (p.id > maiorId) {
+        maiorId = p.id;
+      }
+    }
+
     const produto: Produto = {
-      id: this.produtos.length + 1,
+      id: maiorId + 1,
       nome: this.nome,
       categoria: this.categoria,
       descricao: this.descricao,

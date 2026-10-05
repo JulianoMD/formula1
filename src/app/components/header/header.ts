@@ -15,4 +15,13 @@ export class Header {
   isAdmin(): boolean {
   return sessionStorage.getItem('tipoUsuario') === 'admin';
 }
+  estaLogado(): boolean {
+    return sessionStorage.getItem('tipoUsuario') !== null;
+  }
+
+  sair() {
+    sessionStorage.removeItem('tipoUsuario');
+    sessionStorage.removeItem('emailUsuario');
+    alert('Você saiu da sua conta.');
+  }
 }

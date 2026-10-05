@@ -2,35 +2,45 @@
 
   <h1>Finalizar compra</h1>
 
-  <p>Você já possui cadastro?</p>
+  @if (carrinhoService.itens.length === 0) {
 
-  <div class="opcoes">
+    <p>Seu carrinho está vazio. Adicione algum produto antes de finalizar.</p>
 
-    <button type="button" (click)="irParaLogin()">
-      Já sou cadastrado
-    </button>
+    <a routerLink="/produtos">Ver produtos</a>
 
-    <button type="button" (click)="irParaCadastro()">
-      Não sou cadastrado
-    </button>
+  } @else {
 
-  </div>
+    <p>Você já possui cadastro?</p>
 
-  @if (clienteLogado) {
+    <div class="opcoes">
 
-    <div class="confirmacao">
+      <button type="button" (click)="irParaLogin()">
+        Já sou cadastrado
+      </button>
 
-      <h2>Compra pronta para finalizar</h2>
-
-      <p>
-        Você está logado. Clique abaixo para confirmar sua compra.
-      </p>
-
-      <button type="button" (click)="confirmarCompra()">
-        Confirmar compra
+      <button type="button" (click)="irParaCadastro()">
+        Não sou cadastrado
       </button>
 
     </div>
+
+    @if (clienteLogado) {
+
+      <div class="confirmacao">
+
+        <h2>Compra pronta para finalizar</h2>
+
+        <p>
+          Você está logado. Clique abaixo para confirmar sua compra.
+        </p>
+
+        <button type="button" (click)="confirmarCompra()">
+          Confirmar compra
+        </button>
+
+      </div>
+
+    }
 
   }
 

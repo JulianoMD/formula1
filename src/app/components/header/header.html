@@ -37,9 +37,15 @@
         </span>
       </a>
 
-      <a routerLink="/login" routerLinkActive="active">
-        Login
-      </a>
+      @if (estaLogado()) {
+        <a routerLink="/" (click)="sair()">
+          Sair
+        </a>
+      } @else {
+        <a routerLink="/login" routerLinkActive="active">
+          Login
+        </a>
+      }
 
     </nav>
 

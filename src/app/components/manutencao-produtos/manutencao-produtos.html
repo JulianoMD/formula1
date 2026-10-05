@@ -53,7 +53,11 @@
       type="button"
       (click)="cadastrarProduto()"
     >
-      Cadastrar
+      @if (produtoEditando) {
+        Salvar alteração
+      } @else {
+        Cadastrar
+      }
     </button>
 
   </form>
@@ -72,7 +76,7 @@
 
       <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
 
-      <p><strong>Preço:</strong> {{ produto.preco }}</p>
+      <p><strong>Preço:</strong> {{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
 
       <p><strong>Cor:</strong> {{ produto.cor }}</p>
       <button
