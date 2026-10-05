@@ -9,20 +9,21 @@ export class ProdutosService {
   private produtos: Produto[] = [
     {
       id: 1,
-      nome: 'Apex GP 01',
-      categoria: '1:43 · Edição Clássica',
-      preco: 149.9,
-      descricao: 'Miniatura inspirada no visual dos carros de competição clássicos.',
+      nome: 'Ferrari F2004',
+      categoria: '1:43 · Coleção Premium',
+      preco: 190.9,
+      descricao: 'Carro de Michael Schumacher na temporada de 2004, quando a Ferrari venceu 15 das 18 corridas e Schumacher conquistou seu sétimo título mundial.',
       cor: '#b61d25',
     },
     {
       id: 2,
-      nome: 'Rosso Corse 16',
-      categoria: '1:43 · Série Racing',
-      preco: 169.9,
-      descricao: 'Modelo com acabamento vermelho e visual agressivo de pista.',
+      nome: 'McLaren MP4/4',
+      categoria: '1:43 · Edição Clássica',
+      preco: 189.9,
+      descricao: 'Carro de Ayrton Senna e Alain Prost em 1988, que venceu 15 das 16 corridas do ano e deu a Senna seu primeiro título mundial.',
       cor: '#7f1d1d',
     },
+
     {
       id: 3,
       nome: 'Papaya Speed 04',
