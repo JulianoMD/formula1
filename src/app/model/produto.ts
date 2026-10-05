@@ -5,4 +5,5 @@ export interface Produto {
   descricao: string;
   preco: number;
   cor: string;
+  imagem?: String;
 }

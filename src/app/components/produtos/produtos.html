@@ -30,7 +30,6 @@
 
     <div class="product-grid">
 
-      <!-- AJUSTE: percorre a variável listaProdutos (Aula 8), em vez de chamar o serviço -->
       @for (
         produto of listaProdutos;
         track produto.id
@@ -42,6 +41,8 @@
             class="product-image"
             [style.background]="produto.cor"
           >
+
+            <img [src]="produto.imagem" [alt]="produto.nome">
 
             <span class="scale">
               1:43

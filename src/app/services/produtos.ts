@@ -14,6 +14,8 @@ export class ProdutosService {
       preco: 190.9,
       descricao: 'Carro de Michael Schumacher na temporada de 2004, quando a Ferrari venceu 15 das 18 corridas e Schumacher conquistou seu sétimo título mundial.',
       cor: '#b61d25',
+      imagem: 'imagens/ferrarif2004.png',
+
     },
     {
       id: 2,
@@ -22,6 +24,8 @@ export class ProdutosService {
       preco: 189.9,
       descricao: 'Carro de Ayrton Senna e Alain Prost em 1988, que venceu 15 das 16 corridas do ano e deu a Senna seu primeiro título mundial.',
       cor: '#7f1d1d',
+      imagem: 'imagens/mclarenmp4.png',
+
     },
 
    {
@@ -31,6 +35,8 @@ export class ProdutosService {
       preco: 159.9,
       descricao: 'Carro de Nigel Mansell em 1992, famoso pela suspensão ativa e pelo motor Renault V10, que dominou aquela temporada.',
       cor: '#c55b16',
+      imagem: 'imagens/williamsfw14b.png',
+
     },
     {
       id: 4,
@@ -39,6 +45,8 @@ export class ProdutosService {
       preco: 219.9,
       descricao: 'Carro de Jenson Button em 2009, criado a partir da antiga equipe Honda. Foi campeão logo no primeiro ano e venceu seis das sete primeiras corridas.',
       cor: '#14532d',
+      imagem: 'imagens/brawbgp001.png',
+
     },
 
         {
@@ -48,6 +56,8 @@ export class ProdutosService {
       preco: 197.0,
       descricao: 'Miniatura azul com linhas inspiradas nos carros modernos de corrida.',
       cor: '#1d4ed8',
+      imagem: 'imagens/mercedesw11.png',
+
     },
     {
       id: 6,
@@ -56,6 +66,8 @@ export class ProdutosService {
       preco: 167.9,
       descricao: 'Carro de Max Verstappen em 2023, que venceu 21 das 22 corridas da temporada, o maior número de vitórias de um carro em um único ano.',
       cor: '#374151',
+      imagem: 'imagens/redbullrb19.png',
+
     },
   ];
 
