@@ -24,22 +24,23 @@ export class ProdutosService {
       cor: '#7f1d1d',
     },
 
-    {
+   {
       id: 3,
-      nome: 'Papaya Speed 04',
-      categoria: '1:43 · Série Sprint',
+      nome: 'Williams FW14B',
+      categoria: '1:43 · Série Velocity',
       preco: 159.9,
-      descricao: 'Miniatura laranja para quem gosta de modelos marcantes.',
+      descricao: 'Carro de Nigel Mansell em 1992, famoso pela suspensão ativa e pelo motor Renault V10, que dominou aquela temporada.',
       cor: '#c55b16',
     },
     {
       id: 4,
-      nome: 'Emerald GP 63',
-      categoria: '1:43 · Coleção Premium',
-      preco: 189.9,
-      descricao: 'Modelo de coleção com acabamento verde escuro.',
+      nome: 'Brawn BGP 001',
+      categoria: '1:43 · Edição Limitada',
+      preco: 219.9,
+      descricao: 'Carro de Jenson Button em 2009, criado a partir da antiga equipe Honda. Foi campeão logo no primeiro ano e venceu seis das sete primeiras corridas.',
       cor: '#14532d',
     },
+
     {
       id: 5,
       nome: 'Blue Falcon 11',
