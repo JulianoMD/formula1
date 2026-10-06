@@ -4,7 +4,7 @@
 }
 
 .cart-page {
-  padding: 54px 0 80px;
+  padding-top: 70px;
 }
 
 .eyebrow {
@@ -150,15 +150,32 @@
 }
 
 .checkout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
-  min-height: 48px;
+  min-height: 42px;
+
   margin-top: 18px;
-  border: 0;
+
+  border: none;
   border-radius: 8px;
+
   background: #d71920;
   color: white;
-  font-weight: 800;
+
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+
   cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.checkout-button:hover {
+  background: #b9151b;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 850px) {

@@ -35,7 +35,7 @@ export class ProdutosService {
       preco: 159.9,
       descricao: 'Carro de Nigel Mansell em 1992, famoso pela suspensão ativa e pelo motor Renault V10, que dominou aquela temporada.',
       cor: '#c55b16',
-      imagem: 'imagens/williamsfw14b.png',
+      imagem: '/imagens/williamsfw14b.png',
 
     },
     {
@@ -45,7 +45,7 @@ export class ProdutosService {
       preco: 219.9,
       descricao: 'Carro de Jenson Button em 2009, criado a partir da antiga equipe Honda. Foi campeão logo no primeiro ano e venceu seis das sete primeiras corridas.',
       cor: '#14532d',
-      imagem: 'imagens/brawbgp001.png',
+      imagem: '/imagens/brawnbgp001.png',
 
     },
 
@@ -56,7 +56,7 @@ export class ProdutosService {
       preco: 197.0,
       descricao: 'Carro de Lewis Hamilton em 2020, com pintura preta. Venceu 13 das 17 corridas e deu a Hamilton seu sétimo título, igualando o recorde de Schumacher.',
       cor: '#111111',
-      imagem: 'imagens/mercedesw11.png',
+      imagem: '/imagens/mercedesw11.png',
     },
     {
       id: 6,
@@ -65,7 +65,7 @@ export class ProdutosService {
       preco: 167.9,
       descricao: 'Carro de Max Verstappen em 2023, que venceu 21 das 22 corridas da temporada, o maior número de vitórias de um carro em um único ano.',
       cor: '#374151',
-      imagem: 'imagens/redbullrb19.png',
+      imagem: '/imagens/redbullrb19.png',
 
     },
   ];

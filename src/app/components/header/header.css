@@ -8,7 +8,8 @@
 }
 
 .container {
-  width: min(1120px, calc(100% - 32px));
+  width: calc(100% - 100px);
+  max-width: six;
   margin: 0 auto;
 }
 
