@@ -61,7 +61,15 @@ npm install
 
 ## Development
 
-Start the development server:
+The products and customers are stored in `backend/db.json` and served by [json-server](https://github.com/typicode/json-server). Open **two terminals**.
+
+In the first one, start the API (http://localhost:3000):
+
+```bash
+npm run api
+```
+
+In the second one, start the development server:
 
 ```bash
 ng serve
@@ -75,18 +83,22 @@ http://localhost:4200/
 
 The application will automatically reload whenever the project files are modified.
 
+### Running with Docker
+
+If the computer has [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you don't need to install Node.js or Angular. In the project folder, run:
+
+```bash
+docker compose up
+```
+
+It starts the API (http://localhost:3000) and the site (http://localhost:4200). The first run takes a few minutes because it downloads Node.js and installs the dependencies. To stop, press `Ctrl+C` or run `docker compose down`.
+
 ## Available Scripts
 
 ### Run application
 
 ```bash
 ng serve
-```
-
-### Run unit tests
-
-```bash
-ng test
 ```
 
 ### Generate build
@@ -100,16 +112,6 @@ ng build
 ```bash
 ng generate component component-name
 ```
-
-## Tests
-
-Unit tests can be run with:
-
-```bash
-ng test
-```
-
-The project uses Vitest as the test runner configured by Angular.
 
 ## Production Build
 

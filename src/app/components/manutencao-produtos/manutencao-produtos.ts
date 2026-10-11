@@ -29,66 +29,70 @@ export class ManutencaoProdutos implements OnInit {
 
   ngOnInit(): void {
 
-  const tipoUsuario = sessionStorage.getItem('tipoUsuario');
+    const tipoUsuario = sessionStorage.getItem('tipoUsuario');
 
-  if (tipoUsuario !== 'admin') {
-    alert('Acesso permitido somente ao administrador.');
-    this.router.navigate(['/']);
-    return;
-  }
-
-  this.produtos = this.produtosService.listar();
-}
-
-cadastrarProduto() {
-
-  if (this.nome.trim() === '' || this.preco <= 0) {
-    alert('Preencha o nome e um preço maior que zero.');
-    return;
-  }
-
-  if (this.produtoEditando) {
-
-    const produtoAlterado: Produto = {
-      id: this.produtoEditando.id,
-      nome: this.nome,
-      categoria: this.categoria,
-      descricao: this.descricao,
-      preco: this.preco,
-      cor: this.cor
-    };
-
-    this.produtosService.alterar(produtoAlterado);
-
-    alert('Produto alterado com sucesso!');
-
-    this.produtoEditando = null;
-
-  } else {
-
-    let maiorId = 0;
-    for (const p of this.produtos) {
-      if (p.id > maiorId) {
-        maiorId = p.id;
-      }
+    if (tipoUsuario !== 'admin') {
+      alert('Acesso permitido somente ao administrador.');
+      this.router.navigate(['/']);
+      return;
     }
 
-    const produto: Produto = {
-      id: maiorId + 1,
-      nome: this.nome,
-      categoria: this.categoria,
-      descricao: this.descricao,
-      preco: this.preco,
-      cor: this.cor
-    };
+    this.carregarProdutos();
+  }
 
-    this.produtosService.adicionar(produto);
+  carregarProdutos() {
+    this.produtosService.listar().subscribe(produtos => {
+      this.produtos = produtos;
+    });
+  }
 
-    alert('Produto cadastrado com sucesso!');
+  cadastrarProduto() {
+
+    if (this.nome.trim() === '' || this.preco <= 0) {
+      alert('Preencha o nome e um preço maior que zero.');
+      return;
+    }
+
+    if (this.produtoEditando) {
+
+      const produtoAlterado: Produto = {
+        id: this.produtoEditando.id,
+        nome: this.nome,
+        categoria: this.categoria,
+        descricao: this.descricao,
+        preco: this.preco,
+        cor: this.cor,
+        imagem: this.produtoEditando.imagem
+      };
+
+      this.produtosService.alterar(produtoAlterado).subscribe(() => {
+        alert('Produto alterado com sucesso!');
+        this.produtoEditando = null;
+        this.limparFormulario();
+        this.carregarProdutos();
+      });
+
+    } else {
+
+      const produto: Produto = {
+        id: '',
+        nome: this.nome,
+        categoria: this.categoria,
+        descricao: this.descricao,
+        preco: this.preco,
+        cor: this.cor
+      };
+
+      this.produtosService.adicionar(produto).subscribe(() => {
+        alert('Produto cadastrado com sucesso!');
+        this.limparFormulario();
+        this.carregarProdutos();
+      });
+
+    }
 
   }
 
-}
   editarProduto(produto: Produto) {
 
     this.produtoEditando = produto;
@@ -103,10 +107,19 @@ cadastrarProduto() {
 
   excluirProduto(produto: Produto) {
 
-  this.produtosService.excluir(produto.id);
+    this.produtosService.excluir(produto.id).subscribe(() => {
+      alert('Produto excluído com sucesso!');
+      this.carregarProdutos();
+    });
 
-  alert('Produto excluído com sucesso!');
+  }
 
-}
+  limparFormulario() {
+    this.nome = '';
+    this.categoria = '';
+    this.descricao = '';
+    this.preco = 0;
+    this.cor = '';
+  }
 
 }

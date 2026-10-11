@@ -21,7 +21,6 @@ export class FinalizarCompra {
   if (tipoUsuario === 'cliente') {
     this.clienteLogado = true;
   }
-
 }
 
   irParaLogin() {

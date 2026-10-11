@@ -16,7 +16,6 @@ export class Login {
 
   email: string = '';
   senha: string = '';
-  tipoUsuario: string = '';
 
   botaoDesabilitado: boolean = true;
 
@@ -34,8 +33,6 @@ fazerLogin() {
 
   if (this.email === 'admin@email.com' && this.senha === '123') {
 
-    this.tipoUsuario = 'admin';
-
     sessionStorage.setItem('tipoUsuario', 'admin');
 
     alert('Bem-vindo, administrador!');
@@ -44,40 +41,42 @@ fazerLogin() {
 
   } else {
 
-    const cliente = this.clientesService.clientes.find(
-      cliente =>
-        cliente.email === this.email &&
-        cliente.senha === this.senha
-    );
+    this.clientesService.listar().subscribe(clientes => {
 
-    if (cliente) {
+      const cliente = clientes.find(
+        cliente =>
+          cliente.email === this.email &&
+          cliente.senha === this.senha
+      );
 
-      this.tipoUsuario = 'cliente';
+      if (cliente) {
 
-      sessionStorage.setItem('tipoUsuario', 'cliente');
-      sessionStorage.setItem('emailUsuario', cliente.email);
+        sessionStorage.setItem('tipoUsuario', 'cliente');
+        sessionStorage.setItem('emailUsuario', cliente.email);
 
-      alert(`Bem-vindo, ${cliente.nome}!`);
+        alert(`Bem-vindo, ${cliente.nome}!`);
 
-      const finalizandoCompra = sessionStorage.getItem('finalizandoCompra');
+        const finalizandoCompra = sessionStorage.getItem('finalizandoCompra');
 
-      if (finalizandoCompra === 'true') {
+        if (finalizandoCompra === 'true') {
 
-        sessionStorage.removeItem('finalizandoCompra');
+          sessionStorage.removeItem('finalizandoCompra');
 
-        this.router.navigate(['/finalizar-compra']);
+          this.router.navigate(['/finalizar-compra']);
+
+        } else {
+
+          this.router.navigate(['/']);
+
+        }
 
       } else {
 
-        this.router.navigate(['/']);
+        alert('E-mail ou senha inválidos');
 
       }
 
-    } else {
-
-      alert('E-mail ou senha inválidos');
-
-    }
+    });
 
   }
 

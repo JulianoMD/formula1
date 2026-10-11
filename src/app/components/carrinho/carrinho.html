@@ -1,48 +1,54 @@
-@if (carrinhoService.itens.length === 0) {
-  <div class="empty-cart">
-    <div class="empty-icon">🛒</div>
-    <h2>Seu carrinho está vazio</h2>
-    <p>Adicione miniaturas para vê-las aqui.</p>
-    <a routerLink="/produtos" class="button">Ver produtos</a>
-  </div>
-} @else {
-  <div class="cart-layout">
-    <div class="cart-list">
-      @for (item of carrinhoService.itens; track item.produto.id) {
-        <article class="cart-item">
-          <div class="cart-item-image" [style.background]="item.produto.cor"></div>
+<section class="cart-page">
+  <div class="container">
 
-          <div class="cart-item-info">
-            <p>{{ item.produto.categoria }}</p>
-            <h2>{{ item.produto.nome }}</h2>
-            <strong>{{ item.produto.preco | currency:'BRL':'symbol':'1.2-2' }}</strong>
-            <span> x {{ item.quantidade }}</span>
+    @if (carrinhoService.itens.length === 0) {
+      <div class="empty-cart">
+        <div class="empty-icon">🛒</div>
+        <h2>Seu carrinho está vazio</h2>
+        <p>Adicione miniaturas para vê-las aqui.</p>
+        <a routerLink="/produtos" class="button">Ver produtos</a>
+      </div>
+    } @else {
+      <div class="cart-layout">
+        <div class="cart-list">
+          @for (item of carrinhoService.itens; track item.produto.id) {
+            <article class="cart-item">
+              <div class="cart-item-image" [style.background]="item.produto.cor"></div>
+
+              <div class="cart-item-info">
+                <p>{{ item.produto.categoria }}</p>
+                <h2>{{ item.produto.nome }}</h2>
+                <strong>{{ item.produto.preco | currency:'BRL':'symbol':'1.2-2' }}</strong>
+                <span> x {{ item.quantidade }}</span>
+              </div>
+
+              <button type="button" class="remove-button"
+                      (click)="carrinhoService.remover(item.produto.id)">
+                Remover
+              </button>
+            </article>
+          }
+        </div>
+
+        <aside class="summary">
+          <p>Resumo do pedido</p>
+
+          <div class="summary-row">
+            <span>Itens</span>
+            <span>{{ carrinhoService.quantidade() }}</span>
           </div>
 
-          <button type="button" class="remove-button"
-                  (click)="carrinhoService.remover(item.produto.id)">
-            Remover
-          </button>
-        </article>
-      }
-    </div>
+          <div class="summary-row total-row">
+            <strong>Total</strong>
+            <strong>{{ carrinhoService.total() | currency:'BRL':'symbol':'1.2-2' }}</strong>
+          </div>
 
-    <aside class="summary">
-      <p>Resumo do pedido</p>
-
-      <div class="summary-row">
-        <span>Itens</span>
-        <span>{{ carrinhoService.quantidade() }}</span>
+        <a routerLink="/finalizar-compra" class="checkout-button">
+           Finalizar compra
+        </a>
+        </aside>
       </div>
+    }
 
-      <div class="summary-row total-row">
-        <strong>Total</strong>
-        <strong>{{ carrinhoService.total() | currency:'BRL':'symbol':'1.2-2' }}</strong>
-      </div>
-
-    <a routerLink="/finalizar-compra" class="checkout-button">
-       Finalizar compra
-    </a>
-    </aside>
   </div>
-}
+</section>

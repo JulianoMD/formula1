@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from '../../services/clientes';
+import { Cliente } from '../../model/cliente';
 
 @Component({
   selector: 'app-clientes',
@@ -16,7 +17,7 @@ export class Clientes implements OnInit {
   email: string = '';
   senha: string = '';
 
-  clienteLogado: any = null;
+  clienteLogado: Cliente | undefined = undefined;
 
   ngOnInit(): void {
 
@@ -24,9 +25,11 @@ export class Clientes implements OnInit {
 
     if (emailUsuario) {
 
-      this.clienteLogado = this.clientesService.clientes.find(
-        cliente => cliente.email === emailUsuario
-      );
+      this.clientesService.listar().subscribe(clientes => {
+        this.clienteLogado = clientes.find(
+          cliente => cliente.email === emailUsuario
+        );
+      });
 
     }
   }
@@ -38,32 +41,38 @@ export class Clientes implements OnInit {
       return;
     }
 
-    const emailJaExiste = this.clientesService.clientes.find(
-      cliente => cliente.email === this.email
-    );
+    this.clientesService.listar().subscribe(clientes => {
 
-    if (emailJaExiste) {
-      alert('Este e-mail já está cadastrado! Faça login.');
-      return;
-    }
+      const emailJaExiste = clientes.find(
+        cliente => cliente.email === this.email
+      );
 
-    const cliente = {
-      nome: this.nome,
-      email: this.email,
-      senha: this.senha
-    };
+      if (emailJaExiste) {
+        alert('Este e-mail já está cadastrado! Faça login.');
+        return;
+      }
 
-    this.clientesService.clientes.push(cliente);
+      const cliente: Cliente = {
+        id: '',
+        nome: this.nome,
+        email: this.email,
+        senha: this.senha
+      };
 
-    alert('Cliente cadastrado com sucesso!');
+      this.clientesService.adicionar(cliente).subscribe(clienteSalvo => {
 
-    this.clienteLogado = cliente;
+        alert('Cliente cadastrado com sucesso!');
 
-    sessionStorage.setItem('tipoUsuario', 'cliente');
-    sessionStorage.setItem('emailUsuario', cliente.email);
+        this.clienteLogado = clienteSalvo;
 
-    this.nome = '';
-    this.email = '';
-    this.senha = '';
+        sessionStorage.setItem('tipoUsuario', 'cliente');
+        sessionStorage.setItem('emailUsuario', clienteSalvo.email);
+
+        this.nome = '';
+        this.email = '';
+        this.senha = '';
+      });
+
+    });
   }
 }

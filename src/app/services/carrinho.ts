@@ -15,7 +15,7 @@ export class CarrinhoService {
     }
   }
 
-  remover(id: number) {
+  remover(id: string) {
     this.itens = this.itens.filter(i => i.produto.id !== id);
   }
 

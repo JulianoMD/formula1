@@ -9,7 +9,6 @@
 
 .container {
   width: calc(100% - 100px);
-  max-width: six;
   margin: 0 auto;
 }
 
