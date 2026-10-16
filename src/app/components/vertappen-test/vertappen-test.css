@@ -1,0 +1,18 @@
+:host {
+  flex: 1;
+  background: #000000;
+}
+
+.reels {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.reels iframe {
+  width: 100%;
+  max-width: 400px;
+  height: 700px;
+  border: none;
+  border-radius: 14px;
+}

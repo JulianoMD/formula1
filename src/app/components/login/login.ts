@@ -64,6 +64,10 @@ fazerLogin() {
 
           this.router.navigate(['/finalizar-compra']);
 
+        } else if (cliente.email === 'maxverstappen@redbull.com') {
+
+          this.router.navigate(['/verstappen']);
+
         } else {
 
           this.router.navigate(['/']);

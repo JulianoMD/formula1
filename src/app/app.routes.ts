@@ -7,6 +7,7 @@ import { Clientes } from './components/clientes/clientes';
 import { FinalizarCompra } from './components/finalizar-compra/finalizar-compra';
 import { ManutencaoProdutos } from './components/manutencao-produtos/manutencao-produtos';
 import { ManutencaoClientes } from './components/manutencao-clientes/manutencao-clientes';
+import { VertappenTest } from './components/vertappen-test/vertappen-test';
 
 
 export const routes: Routes = [
@@ -40,6 +41,10 @@ export const routes: Routes = [
   },
   { path: 'manutencao-clientes', 
     component: ManutencaoClientes },
+  {
+    path: 'verstappen',
+    component: VertappenTest,
+  },
   {
     path: '**',
     redirectTo: '',

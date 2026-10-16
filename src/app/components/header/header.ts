@@ -15,6 +15,10 @@ export class Header {
   isAdmin(): boolean {
   return sessionStorage.getItem('tipoUsuario') === 'admin';
 }
+  isVerstappen(): boolean {
+    return sessionStorage.getItem('emailUsuario') === 'maxverstappen@redbull.com';
+  }
+
   estaLogado(): boolean {
     return sessionStorage.getItem('tipoUsuario') !== null;
   }
