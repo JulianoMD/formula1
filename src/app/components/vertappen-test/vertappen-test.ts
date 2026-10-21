@@ -16,7 +16,7 @@ export class VertappenTest implements OnInit {
     const emailUsuario = sessionStorage.getItem('emailUsuario');
 
     if (emailUsuario !== 'maxverstappen@redbull.com') {
-      alert('Página teste - Max Verstappen.');
+      alert('Falha usuario não autorizado');
       this.router.navigate(['/']);
     }
   }

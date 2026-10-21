@@ -6,13 +6,13 @@
 .reels {
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding: 90px 0;
 }
 
 .reels iframe {
   width: 100%;
   max-width: 400px;
-  height: 700px;
+  height: 550px;
   border: none;
   border-radius: 14px;
 }
