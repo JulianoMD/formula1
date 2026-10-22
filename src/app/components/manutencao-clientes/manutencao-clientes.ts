@@ -64,7 +64,8 @@ export class ManutencaoClientes implements OnInit {
         id: this.clienteEditando.id,
         nome: this.nome,
         email: this.email,
-        senha: this.senha
+        senha: this.senha,
+        valorGasto: this.clienteEditando.valorGasto ?? 0
       };
 
       this.clientesService.alterar(clienteAlterado).subscribe(() => {
@@ -80,7 +81,7 @@ export class ManutencaoClientes implements OnInit {
         id: '',
         nome: this.nome,
         email: this.email,
-        senha: this.senha
+        senha: this.senha,
       };
 
       this.clientesService.adicionar(cliente).subscribe(() => {

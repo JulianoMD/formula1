@@ -60,7 +60,15 @@
       "id": "1",
       "nome": "Max Verstappen",
       "email": "maxverstappen@redbull.com",
+      "senha": "123",
+      "valorGasto": 570.7
+    },
+    {
+      "id": "yGufyxCxoiA",
+      "nome": "ro",
+      "email": "ro@email",
       "senha": "123"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

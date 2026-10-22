@@ -8,6 +8,7 @@ import { FinalizarCompra } from './components/finalizar-compra/finalizar-compra'
 import { ManutencaoProdutos } from './components/manutencao-produtos/manutencao-produtos';
 import { ManutencaoClientes } from './components/manutencao-clientes/manutencao-clientes';
 import { VertappenTest } from './components/vertappen-test/vertappen-test';
+import { Leclerc } from './components/leclerc/leclerc';
 
 
 export const routes: Routes = [
@@ -39,11 +40,15 @@ export const routes: Routes = [
   path: 'manutencao-produtos',
   component: ManutencaoProdutos,
   },
-  { path: 'manutencao-clientes', 
+  { path: 'manutencao-clientes',
     component: ManutencaoClientes },
   {
     path: 'verstappen',
     component: VertappenTest,
+  },
+  {
+    path: 'leclerc',
+    component: Leclerc,
   },
   {
     path: '**',

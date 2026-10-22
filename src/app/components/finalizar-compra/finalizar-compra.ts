@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CarrinhoService } from '../../services/carrinho';
+import { ClientesService } from '../../services/clientes';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -11,6 +12,7 @@ import { CarrinhoService } from '../../services/carrinho';
 export class FinalizarCompra {
 
   router = inject(Router);
+  clientesService = inject(ClientesService);
   carrinhoService = inject(CarrinhoService);
   clienteLogado: boolean = false;
 
@@ -34,12 +36,21 @@ export class FinalizarCompra {
   }
 
   confirmarCompra() {
+    const email = sessionStorage.getItem('emailUsuario')
+    const totalCompra = this.carrinhoService.total()
 
-  alert('Compra realizada com sucesso!');
+    this.clientesService.listar().subscribe(clientes => {
+      const cliente = clientes.find(c => c.email === email)
+      if (!cliente) return
 
-  this.carrinhoService.limpar();
+      // gambiarra pois o json-server não salva campos que não existem no objeto
+      cliente.valorGasto = (cliente.valorGasto ?? 0) + totalCompra
 
-  this.router.navigate(['/']);
-
-}
+      this.clientesService.alterar(cliente).subscribe(() => {
+        alert('Compra realizada com sucesso!')
+        this.carrinhoService.limpar()
+        this.router.navigate(['/leclerc'])
+      })
+    })
+  }
 }

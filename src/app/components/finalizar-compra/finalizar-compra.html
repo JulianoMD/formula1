@@ -10,20 +10,6 @@
 
   } @else {
 
-    <p>Você já possui cadastro?</p>
-
-    <div class="opcoes">
-
-      <button type="button" (click)="irParaLogin()">
-        Já sou cadastrado
-      </button>
-
-      <button type="button" (click)="irParaCadastro()">
-        Não sou cadastrado
-      </button>
-
-    </div>
-
     @if (clienteLogado) {
 
       <div class="confirmacao">
@@ -40,8 +26,23 @@
 
       </div>
 
-    }
+    } @else {
 
+      <p>Você já possui cadastro?</p>
+
+    <div class="opcoes">
+
+      <button type="button" (click)="irParaLogin()">
+        Já sou cadastrado
+      </button>
+
+      <button type="button" (click)="irParaCadastro()">
+        Não sou cadastrado
+      </button>
+
+    </div>
+
+    }
   }
 
 </div>
