@@ -1,42 +1,120 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove a margem padrão do navegador */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: clip;
+}
+
 .container {
   width: min(1280px, calc(100% - 64px));
   margin: 0 auto;
 }
 
+/* ---------- Hero: imagem ocupando toda a largura ---------- */
 .hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
   background: #101010;
   color: white;
 }
 
-.hero-content {
-  min-height: 400px;
-  display: grid;
-  grid-template-columns: 600px 1fr;
-  align-items: center;
-  gap: 50px;
+/* Escurece a imagem para melhorar a leitura do texto */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16, 16, 16, 0.88) 0%,
+      rgba(16, 16, 16, 0.55) 40%,
+      rgba(16, 16, 16, 0) 75%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(16, 16, 16, 0.7) 0%,
+      rgba(16, 16, 16, 0) 35%
+    );
 }
 
+.hero-content {
+  position: static;
+  display: flex;
+  align-items: center;
+  min-height: clamp(340px, 52vh, 480px);
+  padding: 48px 0;
+}
+
+.hero-content > :not(.hero-card) {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+/* Imagem de fundo do hero */
+.hero-card {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: #181818;
+  overflow: hidden;
+}
+
+.hero-card-img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+/* Texto superior com detalhe vermelho */
 .eyebrow {
-  margin: 0 0 12px;
-  color: #d71920;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  display: inline-block;
+  margin: 0 0 18px;
+  padding-top: 10px;
+  border-top: 3px solid #d71920;
+  color: #101010;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Texto branco sobre fundos escuros */
+.hero .eyebrow,
+.cta-section .eyebrow {
+  color: white;
 }
 
 .hero h1 {
-  max-width: 600px;
   margin: 0;
-  font-size: clamp(38px, 4.2vw, 54px);
-  line-height: 0.98;
-  letter-spacing: -2px;
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -1px;
 }
 
 .hero-description {
-  max-width: 700px;
+  max-width: 520px;
   margin: 22px 0 0;
-  color: #bdbdbd;
-  font-size: 18px;
+  color: #e4e4e4;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -44,20 +122,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 32px;
 }
 
+/* ---------- Botões ---------- */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-  cursor: pointer;
+  min-height: 50px;
+  padding: 0 28px;
   border: 1px solid transparent;
+  border-radius: 2px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .button-primary {
@@ -65,74 +145,133 @@
   color: white;
 }
 
+.button-primary:hover {
+  background: #b9141a;
+}
+
 .button-secondary {
-  background: transparent;
+  background: rgba(16, 16, 16, 0.35);
   color: white;
-  border-color: #474747;
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
-.hero-card {
-  width: 500px;
-  height: 280px;
-  border: 1px solid #2e2e2e;
-  border-radius: 18px;
-  background: #181818;
-  overflow: hidden;
-  justify-self: end;
+.button-secondary:hover {
+  background: white;
+  color: #101010;
 }
 
-.hero-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
 }
 
+/* ---------- Seções ---------- */
 .section {
-  padding: 72px 0;
+  padding: 88px 0;
 }
 
 .section-heading {
-  max-width: 720px;
-  margin-bottom: 36px;
+  max-width: 640px;
+  margin-bottom: 44px;
 }
 
 .section-heading h2 {
   margin: 0;
   font-size: clamp(30px, 4vw, 46px);
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
+/* Destaques em três colunas */
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 40px;
 }
 
 .feature-card {
-  padding: 26px;
-  border-radius: 14px;
-  background: white;
-  border: 1px solid #e3e3e3;
+  padding: 18px 0 0;
+  border-top: 3px solid #d71920;
+  background: transparent;
 }
 
 .feature-card h3 {
-  margin: 18px 0 8px;
+  margin: 14px 0 8px;
+  font-size: 22px;
 }
 
 .feature-card p {
   margin: 0;
   color: #606060;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
+/* ---------- Chamada final ---------- */
+.cta-section {
+  padding: 0;
+  background: #181818;
+  color: white;
+}
+
+.cta-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 64px 0;
+  border-radius: 0;
+  background: transparent;
+  color: white;
+}
+
+.cta-content p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: #bdbdbd;
+}
+
+/* ---------- Responsivo ---------- */
 @media (max-width: 800px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
   .hero-content {
-    grid-template-columns: 1fr;
-    padding: 64px 0;
+    min-height: 400px;
+    align-items: flex-end;
+    padding: 40px 0;
+  }
+
+  .hero::after {
+    background: linear-gradient(
+      0deg,
+      rgba(16, 16, 16, 0.92) 0%,
+      rgba(16, 16, 16, 0.5) 55%,
+      rgba(16, 16, 16, 0.2) 100%
+    );
+  }
+
+  .hero-card-img {
+    object-position: 65% center;
+  }
+
+  .section {
+    padding: 56px 0;
   }
 
   .feature-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .cta-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 48px 0;
+  }
+}
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }

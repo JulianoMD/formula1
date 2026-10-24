@@ -28,6 +28,6 @@ export class CarrinhoService {
   }
 
   limpar() {
-    this.itens = [];
+     this.itens = [];
   }
 }
