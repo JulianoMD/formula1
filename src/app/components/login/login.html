@@ -1,31 +1,40 @@
 <div class="content-container">
 
-    <form>
-       <!-- Identifica o campo onde o usuário deverá informar seu login. -->
-        <label for="email">Login</label><br>
-        
-        
-        <!-- Cria o campo de login, conecta o valor digitado à variável login e chama a validação ao digitar. -->
-        <input class="input-simples" id="email" name="email" type="email"
-         placeholder="Digite seu email"
-         (keyup)="validarFormulario()"
-         [(ngModel)]="login" 
-         />
-         <!-- Cria o campo de login, conecta o valor digitado à variável login e chama a validação ao digitar. -->
-        
-         <!-- Identifica o campo onde o usuário deverá informar sua senha. -->
-        <label for="input-senha">Senha</label><br>
-        <input class="input-simples" id="input-senha" name="input-senha" type="password"
-            placeholder="Digite sua senha"
-            (keyup)="validarFormulario()"
-            [(ngModel)]="senha"
-            />
+  <form>
 
-            <!-- Cria o campo de senha, oculta os caracteres digitados e conecta o valor à variável senha no TS. -->
+    <label for="email">Login</label><br>
 
-        <button class="input-submeter"
-         [disabled]="botaoDesabilitado"
-         (click)="fazerLogin()">
-            Confirmar
-        </button>
-    </form>
+    <input
+      class="input-simples"
+      id="email"
+      name="email"
+      type="email"
+      placeholder="Digite seu email"
+      (keyup)="validarFormulario()"
+      [(ngModel)]="login"
+    />
+
+    <label for="input-senha">Senha</label><br>
+
+    <input
+      class="input-simples"
+      id="input-senha"
+      name="input-senha"
+      type="password"
+      placeholder="Digite sua senha"
+      (keyup)="validarFormulario()"
+      [(ngModel)]="senha"
+    />
+
+    <button
+      class="input-submeter"
+      type="button"
+      [disabled]="botaoDesabilitado"
+      (click)="fazerLogin()"
+    >
+      Confirmar
+    </button>
+
+  </form>
+
+</div>

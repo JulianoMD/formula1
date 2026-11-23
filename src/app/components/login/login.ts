@@ -1,3 +1,4 @@
+
 import { ClienteService } from '../../services/clientes';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -29,40 +30,57 @@ export class LoginComponent {
   }
 
   fazerLogin() {
-    console.log(this.clienteService.listar());
+
+    this.clienteService.tipoUsuario = '';
+
     if (this.login === 'admin@email.com' && this.senha === '123') {
+
+      this.clienteService.tipoUsuario = 'admin';
+
       alert(`Bem-vindo ${this.login}!`);
-      this.router.navigate(['/admin-clientes-listar']);
 
-    } else if (this.clienteService.listar().length > 0) {
-
-      let encontrou = false;
-
-      for (let cliente of this.clienteService.listar()) {
-        if (cliente.email === this.login && cliente.senha === this.senha) {
-          encontrou = true;
-          break;
-        }
-      }
-
-      if (encontrou) {
-        alert(`Bem-vindo ${this.login}!`);
-        this.router.navigate(['/']);
-      } else {
-        alert('Dados inválidos');
-      }
+      this.router.navigate(['/admin-produtos-listar']);
 
     } else {
-      alert('Dados inválidos');
+
+      this.clienteService.listar().subscribe({
+        next: (clientes) => {
+
+          let encontrou = false;
+
+          for (let cliente of clientes) {
+
+            if (cliente.email === this.login &&
+                cliente.senha === this.senha) {
+              encontrou = true;
+              break;
+            }
+
+          }
+
+          if (encontrou) {
+
+            this.clienteService.tipoUsuario = 'cliente';
+
+            alert(`Bem-vindo ${this.login}!`);
+
+            this.router.navigate(['/']);
+
+          } else {
+
+            alert('Dados inválidos');
+
+          }
+
+        },
+        error: () => alert('Erro ao consultar clientes.')
+      });
+
     }
-  }
 
-  onBotaoClicado() {
-    alert("Botão clicado");
-  }
-
-  teclaDigitada() {
-    alert("Usuário digitou uma tecla");
   }
 
 }
+
+
+

@@ -1,7 +1,8 @@
+
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-
 import { CarrinhoService } from '../../services/carrinho';
+import { ClienteService } from '../../services/clientes';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,10 @@ import { CarrinhoService } from '../../services/carrinho';
   styleUrl: './header.css',
 })
 export class Header {
+
   carrinhoService = inject(CarrinhoService);
+
+  clienteService = inject(ClienteService);
 
   itensMenu = [
     { label: 'Início', link: '/' },
@@ -20,16 +24,17 @@ export class Header {
   ];
 
   isAdmin(): boolean {
-    return sessionStorage.getItem('tipoUsuario') === 'admin';
+    return this.clienteService.tipoUsuario === 'admin';
   }
 
   estaLogado(): boolean {
-    return sessionStorage.getItem('tipoUsuario') !== null;
+    return this.clienteService.tipoUsuario !== '';
   }
 
   sair() {
-    sessionStorage.removeItem('tipoUsuario');
-    sessionStorage.removeItem('emailUsuario');
+    this.clienteService.tipoUsuario = '';
     alert('Você saiu da sua conta.');
   }
+
 }
+

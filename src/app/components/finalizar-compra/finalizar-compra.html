@@ -1,3 +1,4 @@
+
 <div class="finalizar-container">
 
   <h1>Finalizar compra</h1>
@@ -9,20 +10,6 @@
     <a routerLink="/produtos">Ver produtos</a>
 
   } @else {
-
-    <p>Você já possui cadastro?</p>
-
-    <div class="opcoes">
-
-      <button type="button" (click)="irParaLogin()">
-        Já sou cadastrado
-      </button>
-
-      <button type="button" (click)="irParaCadastro()">
-        Não sou cadastrado
-      </button>
-
-    </div>
 
     @if (clienteLogado) {
 
@@ -36,6 +23,22 @@
 
         <button type="button" (click)="confirmarCompra()">
           Confirmar compra
+        </button>
+
+      </div>
+
+    } @else {
+
+      <p>Você já possui cadastro?</p>
+
+      <div class="opcoes">
+
+        <button type="button" (click)="irParaLogin()">
+          Já sou cadastrado
+        </button>
+
+        <button type="button" (click)="irParaCadastro()">
+          Não sou cadastrado
         </button>
 
       </div>

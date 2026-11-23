@@ -1,3 +1,4 @@
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Produto } from '../model/produto';
@@ -19,6 +20,10 @@ export class ProdutosService {
     return this.http.post<Produto>(this.url, produto);
   }
 
+  buscarPorId(id: string) {
+    return this.http.get<Produto>(`${this.url}/${id}`);
+  }
+
   alterar(produto: Produto) {
     return this.http.put<Produto>(`${this.url}/${produto.id}`, produto);
   }
@@ -28,3 +33,4 @@ export class ProdutosService {
   }
 
 }
+

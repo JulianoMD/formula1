@@ -32,21 +32,49 @@
           <th>Nome</th>
           <th>Sobrenome</th>
           <th>Data de Nascimento</th>
+          <th>Ações</th>
         </tr>
       </thead>
 
       <tbody>
+
         @for (cliente of listaClientes; track cliente.id) {
+
           <tr>
             <td>{{ cliente.id }}</td>
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.sobrenome }}</td>
             <td>{{ cliente.dataNascimento }}</td>
+
+            <td>
+
+              @if (cliente.id) {
+
+                <button
+                  class="botao-editar"
+                  type="button"
+                  [routerLink]="['/cadastro-cliente', cliente.id]">
+                  Editar
+                </button>
+
+                <button
+                  class="botao-excluir"
+                  type="button"
+                  (click)="excluir(cliente.id)">
+                  Excluir
+                </button>
+
+              }
+
+            </td>
           </tr>
+
         }
+
       </tbody>
 
     </table>
   </div>
 
 </div>
+

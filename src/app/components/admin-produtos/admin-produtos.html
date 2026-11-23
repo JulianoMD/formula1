@@ -1,0 +1,80 @@
+
+<div class="content-container">
+
+  <div class="cabecalho">
+    <div>
+      <span class="subtitulo">
+        ÁREA ADMINISTRATIVA
+      </span>
+
+      <h1>Produtos</h1>
+
+      <p>
+        Gerencie os carrinhos de Fórmula 1 cadastrados na plataforma.
+      </p>
+    </div>
+
+    <button
+      class="botao-novo"
+      routerLink="/manutencao-produtos"
+      type="button">
+      + Novo produto
+    </button>
+
+  </div>
+
+  <div class="tabela-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Cor</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @for (produto of listaProdutos; track produto.id) {
+
+          <tr>
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.categoria }}</td>
+            <td>{{ produto.preco }}</td>
+            <td>{{ produto.cor }}</td>
+
+            <td>
+
+              <button
+                class="botao-editar"
+                type="button"
+                [routerLink]="['/manutencao-produtos', produto.id]">
+                Editar
+              </button>
+
+              <button
+                class="botao-excluir"
+                type="button"
+                (click)="excluir(produto.id)">
+                Excluir
+              </button>
+
+            </td>
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+

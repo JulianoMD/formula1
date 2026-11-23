@@ -1,7 +1,9 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClienteService } from '../../services/clientes';
+import { Cliente } from '../../model/cliente';
 
 @Component({
   selector: 'app-cliente',
@@ -9,42 +11,63 @@ import { ClienteService } from '../../services/clientes';
   templateUrl: './cadastro-cliente.html',
   styleUrl: './cadastro-cliente.css'
 })
-export class ClienteComponent {
+export class ClienteComponent implements OnInit {
+
+  cliente: Cliente = {} as Cliente;
 
   private service = inject(ClienteService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-  cliente = {
-    cpf: '',
-    nome: '',
-    sobrenome: '',
-    dataNascimento: '',
-    email: '',
-    senha: '',
-    confirmarSenha: ''
-  };
+  confirmarSenha: string = '';
+
+  clienteId: string | null =
+    this.route.snapshot.paramMap.get('id');
+
+  ngOnInit() {
+
+    if (this.clienteId) {
+
+      this.service.buscarPorId(this.clienteId).subscribe({
+        next: (cliente) => this.cliente = cliente,
+        error: () => alert('Cliente não encontrado.')
+      });
+
+    }
+
+  }
 
   cadastrar() {
 
-    if (this.cliente.senha !== this.cliente.confirmarSenha) {
+    if (!this.clienteId &&
+        this.cliente.senha !== this.confirmarSenha) {
       alert('As senhas não são iguais.');
       return;
     }
 
-    this.service.cadastrar(this.cliente);
-    console.log(this.service.listar());
+    if (this.clienteId) {
 
-    alert(`Cliente ${this.cliente.nome} cadastrado com sucesso!`);
+      this.service.alterar(this.cliente).subscribe({
+        next: () => {
+          alert('Cliente alterado com sucesso!');
+          this.router.navigate(['/admin-clientes-listar']);
+        },
+        error: () => alert('Erro ao alterar cliente.')
+      });
 
-    console.log(this.cliente);
+    } else {
 
-    this.cliente = {
-      cpf: '',
-      nome: '',
-      sobrenome: '',
-      dataNascimento: '',
-      email: '',
-      senha: '',
-      confirmarSenha: ''
-    };
+      this.service.cadastrar(this.cliente).subscribe({
+        next: () => {
+          alert(`Cliente ${this.cliente.nome} cadastrado com sucesso!`);
+          this.router.navigate(['/login']);
+        },
+        error: () => alert('Erro ao cadastrar cliente.')
+      });
+
+    }
+
   }
+
 }
+

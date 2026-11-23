@@ -1,125 +1,61 @@
+
 import { Component, inject, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProdutosService } from '../../services/produtos';
 import { Produto } from '../../model/produto';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manutencao-produtos',
-  imports: [FormsModule, CurrencyPipe],
+  imports: [FormsModule],
   templateUrl: './manutencao-produtos.html',
   styleUrl: './manutencao-produtos.css',
 })
 export class ManutencaoProdutos implements OnInit {
 
-  produtosService = inject(ProdutosService);
+  produto: Produto = {} as Produto;
 
-  router = inject(Router);
+  private service = inject(ProdutosService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-  produtos: Produto[] = [];
+  produtoId: string | null =
+    this.route.snapshot.paramMap.get('id');
 
-  nome: string = '';
-  categoria: string = '';
-  descricao: string = '';
-  preco: number = 0;
-  cor: string = '';
+  ngOnInit() {
 
-  produtoEditando: Produto | null = null;
-
-  ngOnInit(): void {
-
-    const tipoUsuario = sessionStorage.getItem('tipoUsuario');
-
-    if (tipoUsuario !== 'admin') {
-      alert('Acesso permitido somente ao administrador.');
-      this.router.navigate(['/']);
-      return;
+    if (this.produtoId) {
+      this.service.buscarPorId(this.produtoId).subscribe({
+        next: (produto) => this.produto = produto,
+        error: () => alert('Produto não encontrado.')
+      });
     }
 
-    this.carregarProdutos();
   }
 
-  carregarProdutos() {
-    this.produtosService.listar().subscribe(produtos => {
-      this.produtos = produtos;
-    });
-  }
+  salvar() {
 
-  cadastrarProduto() {
+    if (this.produtoId) {
 
-    if (this.nome.trim() === '' || this.preco <= 0) {
-      alert('Preencha o nome e um preço maior que zero.');
-      return;
-    }
-
-    if (this.produtoEditando) {
-
-      const produtoAlterado: Produto = {
-        id: this.produtoEditando.id,
-        nome: this.nome,
-        categoria: this.categoria,
-        descricao: this.descricao,
-        preco: this.preco,
-        cor: this.cor,
-        imagem: this.produtoEditando.imagem
-      };
-
-      this.produtosService.alterar(produtoAlterado).subscribe(() => {
-        alert('Produto alterado com sucesso!');
-        this.produtoEditando = null;
-        this.limparFormulario();
-        this.carregarProdutos();
+      this.service.alterar(this.produto).subscribe({
+        next: () => {
+          alert('Produto alterado com sucesso!');
+        },
+        error: () => alert('Erro ao alterar o produto.')
       });
 
     } else {
 
-      const produto: Produto = {
-        id: '',
-        nome: this.nome,
-        categoria: this.categoria,
-        descricao: this.descricao,
-        preco: this.preco,
-        cor: this.cor
-      };
-
-      this.produtosService.adicionar(produto).subscribe(() => {
-        alert('Produto cadastrado com sucesso!');
-        this.limparFormulario();
-        this.carregarProdutos();
+      this.service.adicionar(this.produto).subscribe({
+        next: () => {
+          alert('Produto cadastrado com sucesso!');
+        },
+        error: () => alert('Erro ao cadastrar o produto.')
       });
 
     }
 
   }
 
-  editarProduto(produto: Produto) {
-
-    this.produtoEditando = produto;
-
-    this.nome = produto.nome;
-    this.categoria = produto.categoria;
-    this.descricao = produto.descricao;
-    this.preco = produto.preco;
-    this.cor = produto.cor;
-
-  }
-
-  excluirProduto(produto: Produto) {
-
-    this.produtosService.excluir(produto.id).subscribe(() => {
-      alert('Produto excluído com sucesso!');
-      this.carregarProdutos();
-    });
-
-  }
-
-  limparFormulario() {
-    this.nome = '';
-    this.categoria = '';
-    this.descricao = '';
-    this.preco = 0;
-    this.cor = '';
-  }
-
 }
+

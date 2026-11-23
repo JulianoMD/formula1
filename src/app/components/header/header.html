@@ -1,3 +1,4 @@
+
 <header class="header">
   <div class="container header-content">
 
@@ -19,17 +20,23 @@
         Modelos
       </a>
 
-    @if (isAdmin()) {
-  <a routerLink="/manutencao-produtos" routerLinkActive="active">
-    Manutenção
-  </a>
+      @if (isAdmin()) {
 
-  <a routerLink="/manutencao-clientes" routerLinkActive="active">
-    Clientes
-  </a>
-}
+        <a routerLink="/admin-produtos-listar"
+           routerLinkActive="active">
+          Manutenção
+        </a>
 
-      <a routerLink="/carrinho" routerLinkActive="active" class="cart-link">
+        <a routerLink="/admin-clientes-listar"
+           routerLinkActive="active">
+          Clientes
+        </a>
+
+      }
+
+      <a routerLink="/carrinho"
+         routerLinkActive="active"
+         class="cart-link">
         Carrinho
 
         <span class="cart-badge">

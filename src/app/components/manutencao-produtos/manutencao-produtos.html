@@ -1,10 +1,30 @@
+
 <div class="manutencao-container">
 
   <h1>Manutenção de Produtos</h1>
 
-  <h2>Cadastrar produto</h2>
+  <h2>
+    @if (produtoId) {
+      Alterar produto
+    } @else {
+      Cadastrar produto
+    }
+  </h2>
 
   <form>
+
+    @if (produtoId) {
+
+      <label for="id">ID</label>
+      <input
+        id="id"
+        name="id"
+        type="text"
+        [ngModel]="produto.id"
+        disabled
+      >
+
+    }
 
     <label for="nome">Nome</label>
     <input
@@ -12,7 +32,7 @@
       name="nome"
       type="text"
       placeholder="Digite o nome do produto"
-      [(ngModel)]="nome"
+      [(ngModel)]="produto.nome"
     >
 
     <label for="categoria">Categoria</label>
@@ -21,7 +41,7 @@
       name="categoria"
       type="text"
       placeholder="Digite a categoria"
-      [(ngModel)]="categoria"
+      [(ngModel)]="produto.categoria"
     >
 
     <label for="descricao">Descrição</label>
@@ -29,7 +49,7 @@
       id="descricao"
       name="descricao"
       placeholder="Digite a descrição"
-      [(ngModel)]="descricao"
+      [(ngModel)]="produto.descricao"
     ></textarea>
 
     <label for="preco">Preço</label>
@@ -37,7 +57,7 @@
       id="preco"
       name="preco"
       type="number"
-      [(ngModel)]="preco"
+      [(ngModel)]="produto.preco"
     >
 
     <label for="cor">Cor</label>
@@ -46,14 +66,14 @@
       name="cor"
       type="text"
       placeholder="Ex.: #d71920"
-      [(ngModel)]="cor"
+      [(ngModel)]="produto.cor"
     >
 
     <button
       type="button"
-      (click)="cadastrarProduto()"
+      (click)="salvar()"
     >
-      @if (produtoEditando) {
+      @if (produtoId) {
         Salvar alteração
       } @else {
         Cadastrar
@@ -61,41 +81,5 @@
     </button>
 
   </form>
-
-  <h2>Produtos cadastrados</h2>
-
-  @for (produto of produtos; track produto.id) {
-
-    <div class="produto">
-
-      <p><strong>ID:</strong> {{ produto.id }}</p>
-
-      <p><strong>Nome:</strong> {{ produto.nome }}</p>
-
-      <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
-
-      <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
-
-      <p><strong>Preço:</strong> {{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
-
-      <p><strong>Cor:</strong> {{ produto.cor }}</p>
-      <button
-      
-      type="button"
-      (click)="editarProduto(produto)"
-    >
-      Alterar
-    </button>
-
-    <button
-  type="button"
-  (click)="excluirProduto(produto)"
->
-  Excluir
-</button>
-
-    </div>
-
-  }
 
 </div>
