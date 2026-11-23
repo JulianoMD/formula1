@@ -12,9 +12,16 @@ import { CarrinhoService } from '../../services/carrinho';
 export class Header {
   carrinhoService = inject(CarrinhoService);
 
+  itensMenu = [
+    { label: 'Início', link: '/' },
+    { label: 'Produtos', link: '/produtos' },
+    { label: 'Carrinho', link: '/carrinho' },
+    { label: 'Cadastro de Clientes', link: '/admin-clientes-listar' }
+  ];
+
   isAdmin(): boolean {
-  return sessionStorage.getItem('tipoUsuario') === 'admin';
-}
+    return sessionStorage.getItem('tipoUsuario') === 'admin';
+  }
 
   estaLogado(): boolean {
     return sessionStorage.getItem('tipoUsuario') !== null;
