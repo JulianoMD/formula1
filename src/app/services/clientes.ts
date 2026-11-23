@@ -7,6 +7,8 @@ export class ClienteService {
 
   listaClientes: any[] = [];
 
+  tipoUsuario: string = '';
+
   listar() {
     return this.listaClientes;
   }

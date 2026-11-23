@@ -1,4 +1,3 @@
-
 <header class="header">
   <div class="container header-content">
 
@@ -9,10 +8,8 @@
 
     <nav class="nav">
 
-      <a
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/" routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
         Início
       </a>
 
@@ -20,39 +17,26 @@
         Modelos
       </a>
 
-      @if (isAdmin()) {
-
-        <a routerLink="/admin-produtos-listar"
-           routerLinkActive="active">
-          Manutenção
-        </a>
-
-        <a routerLink="/admin-clientes-listar"
-           routerLinkActive="active">
-          Clientes
-        </a>
-
-      }
-
-      <a routerLink="/carrinho"
-         routerLinkActive="active"
-         class="cart-link">
-        Carrinho
-
-        <span class="cart-badge">
-          {{ carrinhoService.quantidade() }}
-        </span>
+      <a *ngIf="isAdmin()" routerLink="/admin-produtos-listar" routerLinkActive="active">
+        Manutenção
       </a>
 
-      @if (estaLogado()) {
-        <a routerLink="/" (click)="sair()">
-          Sair
-        </a>
-      } @else {
-        <a routerLink="/login" routerLinkActive="active">
-          Login
-        </a>
-      }
+      <a *ngIf="isAdmin()" routerLink="/admin-clientes-listar" routerLinkActive="active">
+        Clientes
+      </a>
+
+      <a routerLink="/carrinho" routerLinkActive="active" class="cart-link">
+        Carrinho
+        <span class="cart-badge">{{ carrinhoService.quantidade() }}</span>
+      </a>
+
+      <a *ngIf="estaLogado()" routerLink="/" (click)="sair()">
+        Sair
+      </a>
+
+      <a *ngIf="!estaLogado()" routerLink="/login" routerLinkActive="active">
+        Login
+      </a>
 
     </nav>
 

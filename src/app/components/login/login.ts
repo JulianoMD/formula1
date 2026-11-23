@@ -1,4 +1,3 @@
-
 import { ClienteService } from '../../services/clientes';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -31,56 +30,47 @@ export class LoginComponent {
 
   fazerLogin() {
 
-    this.clienteService.tipoUsuario = '';
+    console.log(this.clienteService.listar());
 
     if (this.login === 'admin@email.com' && this.senha === '123') {
 
       this.clienteService.tipoUsuario = 'admin';
 
       alert(`Bem-vindo ${this.login}!`);
-
-      this.router.navigate(['/admin-produtos-listar']);
+      this.router.navigate(['/admin-clientes-listar']);
 
     } else {
 
-      this.clienteService.listar().subscribe({
-        next: (clientes) => {
+      let encontrou = false;
 
-          let encontrou = false;
+      for (let cliente of this.clienteService.listar()) {
 
-          for (let cliente of clientes) {
+        if (cliente.email === this.login && cliente.senha === this.senha) {
 
-            if (cliente.email === this.login &&
-                cliente.senha === this.senha) {
-              encontrou = true;
-              break;
-            }
+          encontrou = true;
+          this.clienteService.tipoUsuario = 'cliente';
+          break;
 
-          }
+        }
+      }
 
-          if (encontrou) {
-
-            this.clienteService.tipoUsuario = 'cliente';
-
-            alert(`Bem-vindo ${this.login}!`);
-
-            this.router.navigate(['/']);
-
-          } else {
-
-            alert('Dados inválidos');
-
-          }
-
-        },
-        error: () => alert('Erro ao consultar clientes.')
-      });
+      if (encontrou) {
+        alert(`Bem-vindo ${this.login}!`);
+        this.router.navigate(['/']);
+      } else {
+        alert('Dados inválidos');
+      }
 
     }
+  }
 
+  onBotaoClicado() {
+    alert("Botão clicado");
+  }
+
+  teclaDigitada() {
+    alert("Usuário digitou uma tecla");
   }
 
 }
-
-
 
