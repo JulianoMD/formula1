@@ -1,89 +1,68 @@
-import { Component, inject } from '@angular/core';
+import { ClienteService } from '../../services/clientes';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { ClientesService } from '../../services/clientes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
-export class Login {
+export class LoginComponent {
 
-  router = inject(Router);
-  clientesService = inject(ClientesService);
-
-  email: string = '';
-  senha: string = '';
+  constructor(
+    private router: Router,
+    private clienteService: ClienteService
+  ) {}
 
   botaoDesabilitado: boolean = true;
+  login: string = "";
+  senha: string = "";
 
   validarFormulario() {
-
-    if (this.email.trim() !== '' && this.senha.trim() !== '') {
+    if (this.login.trim() !== '' && this.senha.trim() !== '') {
       this.botaoDesabilitado = false;
     } else {
       this.botaoDesabilitado = true;
     }
-
   }
 
-fazerLogin() {
+  fazerLogin() {
+    console.log(this.clienteService.listar());
+    if (this.login === 'admin@email.com' && this.senha === '123') {
+      alert(`Bem-vindo ${this.login}!`);
+      this.router.navigate(['/admin-clientes-listar']);
 
-  if (this.email === 'admin@email.com' && this.senha === '123') {
+    } else if (this.clienteService.listar().length > 0) {
 
-    sessionStorage.setItem('tipoUsuario', 'admin');
+      let encontrou = false;
 
-    alert('Bem-vindo, administrador!');
-
-    this.router.navigate(['/']);
-
-  } else {
-
-    this.clientesService.listar().subscribe(clientes => {
-
-      const cliente = clientes.find(
-        cliente =>
-          cliente.email === this.email &&
-          cliente.senha === this.senha
-      );
-
-      if (cliente) {
-
-        sessionStorage.setItem('tipoUsuario', 'cliente');
-        sessionStorage.setItem('emailUsuario', cliente.email);
-
-        alert(`Bem-vindo, ${cliente.nome}!`);
-
-        const finalizandoCompra = sessionStorage.getItem('finalizandoCompra');
-
-        if (finalizandoCompra === 'true') {
-
-          sessionStorage.removeItem('finalizandoCompra');
-
-          this.router.navigate(['/finalizar-compra']);
-
-        } else if (cliente.email === 'maxverstappen@redbull.com') {
-
-          this.router.navigate(['/verstappen']);
-
-        } else {
-
-          this.router.navigate(['/']);
-
+      for (let cliente of this.clienteService.listar()) {
+        if (cliente.email === this.login && cliente.senha === this.senha) {
+          encontrou = true;
+          break;
         }
-
-      } else {
-
-        alert('E-mail ou senha inválidos');
-
       }
 
-    });
+      if (encontrou) {
+        alert(`Bem-vindo ${this.login}!`);
+        this.router.navigate(['/']);
+      } else {
+        alert('Dados inválidos');
+      }
 
+    } else {
+      alert('Dados inválidos');
+    }
+  }
+
+  onBotaoClicado() {
+    alert("Botão clicado");
+  }
+
+  teclaDigitada() {
+    alert("Usuário digitou uma tecla");
   }
 
 }
-}
-

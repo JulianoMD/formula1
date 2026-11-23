@@ -1,43 +1,31 @@
-<div class="login-container">
+<div class="content-container">
 
-  <h1>Login</h1>
+    <form>
+       <!-- Identifica o campo onde o usuário deverá informar seu login. -->
+        <label for="email">Login</label><br>
+        
+        
+        <!-- Cria o campo de login, conecta o valor digitado à variável login e chama a validação ao digitar. -->
+        <input class="input-simples" id="email" name="email" type="email"
+         placeholder="Digite seu email"
+         (keyup)="validarFormulario()"
+         [(ngModel)]="login" 
+         />
+         <!-- Cria o campo de login, conecta o valor digitado à variável login e chama a validação ao digitar. -->
+        
+         <!-- Identifica o campo onde o usuário deverá informar sua senha. -->
+        <label for="input-senha">Senha</label><br>
+        <input class="input-simples" id="input-senha" name="input-senha" type="password"
+            placeholder="Digite sua senha"
+            (keyup)="validarFormulario()"
+            [(ngModel)]="senha"
+            />
 
-  <form>
+            <!-- Cria o campo de senha, oculta os caracteres digitados e conecta o valor à variável senha no TS. -->
 
-    <label for="email">E-mail</label>
-
-    <input
-      id="email"
-      name="email"
-      type="email"
-      placeholder="Digite seu e-mail"
-      [(ngModel)] = "email"
-      (keyup) = "validarFormulario()"
-    >
-
-    <label for="senha">Senha</label>
-
-    <input
-      id="senha"
-      name="senha"
-      type="password"
-      placeholder="Digite sua senha"
-      [(ngModel)] = "senha"
-      (keyup) = "validarFormulario()"
-    >
-
-    <button   type="submit"
-  [disabled]="botaoDesabilitado"
-  (click)="fazerLogin()"
->
-  Entrar
-    </button>
-
-    <p class="cadastro-link">
-  Ainda não sou cadastrado?
-  <a routerLink="/clientes">Cadastre-se</a>
-</p>
-
-  </form>
-
-</div>
+        <button class="input-submeter"
+         [disabled]="botaoDesabilitado"
+         (click)="fazerLogin()">
+            Confirmar
+        </button>
+    </form>
