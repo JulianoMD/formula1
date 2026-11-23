@@ -8,7 +8,6 @@ import { AdminClientes } from './components/admin-cliente/admin-cliente';
 import { FinalizarCompra } from './components/finalizar-compra/finalizar-compra';
 import { ManutencaoProdutos } from './components/manutencao-produtos/manutencao-produtos';
 import { VertappenTest } from './components/vertappen-test/vertappen-test';
-import { AdminProdutos } from './components/admin-produtos/admin-produtos';
 
 export const routes: Routes = [
   {
@@ -31,14 +30,8 @@ export const routes: Routes = [
     path: 'cadastro-cliente',
     component: ClienteComponent,
   },
-  {
-    path: 'cadastro-cliente/:id',
-    component: ClienteComponent,
-  },
-  {
-    path: 'admin-clientes-listar',
-    component: AdminClientes,
-  },
+  { path: 'admin-clientes-listar', 
+    component: AdminClientes },
   {
     path: 'finalizar-compra',
     component: FinalizarCompra,
@@ -47,14 +40,7 @@ export const routes: Routes = [
     path: 'manutencao-produtos',
     component: ManutencaoProdutos,
   },
-  {
-    path: 'manutencao-produtos/:id',
-    component: ManutencaoProdutos,
-  },
-  {
-    path: 'admin-produtos-listar',
-    component: AdminProdutos,
-  },
+
   {
     path: 'verstappen',
     component: VertappenTest,
