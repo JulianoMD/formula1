@@ -1,7 +1,9 @@
-import { ClienteService } from '../../services/clientes';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdministradoresService } from '../../services/administradores';
+import { ClienteService } from '../../services/clientes';
+import { CarrinhoService } from '../../services/carrinho';
 
 @Component({
   selector: 'app-login',
@@ -11,66 +13,72 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(
-    private router: Router,
-    private clienteService: ClienteService
-  ) {}
+  private router = inject(Router);
+  private administradoresService = inject(AdministradoresService);
+  private clienteService = inject(ClienteService);
+  private carrinhoService = inject(CarrinhoService);
 
-  botaoDesabilitado: boolean = true;
-  login: string = "";
-  senha: string = "";
+  login: string = '';
+  senha: string = '';
 
-  validarFormulario() {
-    if (this.login.trim() !== '' && this.senha.trim() !== '') {
-      this.botaoDesabilitado = false;
-    } else {
-      this.botaoDesabilitado = true;
-    }
+  botaoDesabilitado(): boolean {
+    return this.login === '' || this.senha === '';
   }
 
   fazerLogin() {
 
-    console.log(this.clienteService.listar());
+    this.administradoresService.listar().subscribe({
+      next: (administradores) => {
 
-    if (this.login === 'admin@email.com' && this.senha === '123') {
+        const admin = administradores.find(
+          a => a.email === this.login && a.senha === this.senha
+        );
 
-      this.clienteService.tipoUsuario = 'admin';
-
-      alert(`Bem-vindo ${this.login}!`);
-      this.router.navigate(['/admin-clientes-listar']);
-
-    } else {
-
-      let encontrou = false;
-
-      for (let cliente of this.clienteService.listar()) {
-
-        if (cliente.email === this.login && cliente.senha === this.senha) {
-
-          encontrou = true;
-          this.clienteService.tipoUsuario = 'cliente';
-          break;
-
+        if (admin) {
+          this.entrar('admin');
+          this.router.navigate(['/admin-produtos-listar']);
+        } else {
+          this.procurarCliente();
         }
-      }
 
-      if (encontrou) {
-        alert(`Bem-vindo ${this.login}!`);
-        this.router.navigate(['/']);
-      } else {
-        alert('Dados inválidos');
-      }
+      },
+      error: () => alert('Erro ao consultar a API.')
+    });
 
-    }
   }
 
-  onBotaoClicado() {
-    alert("Botão clicado");
+  procurarCliente() {
+
+    this.clienteService.listar().subscribe({
+      next: (clientes) => {
+
+        const cliente = clientes.find(
+          c => c.email === this.login && c.senha === this.senha
+        );
+
+        if (cliente) {
+          this.entrar('cliente');
+
+          if (this.carrinhoService.quantidade() > 0) {
+            this.router.navigate(['/finalizar-compra']);
+          } else {
+            this.router.navigate(['/']);
+          }
+
+        } else {
+          alert('Dados inválidos');
+        }
+
+      },
+      error: () => alert('Erro ao consultar a API.')
+    });
+
   }
 
-  teclaDigitada() {
-    alert("Usuário digitou uma tecla");
+  entrar(tipo: string) {
+    sessionStorage.setItem('tipoUsuario', tipo);
+    sessionStorage.setItem('emailUsuario', this.login);
+    alert(`Bem-vindo ${this.login}!`);
   }
 
 }
-

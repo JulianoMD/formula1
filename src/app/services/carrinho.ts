@@ -27,6 +27,10 @@ export class CarrinhoService {
     return this.itens.reduce((soma, i) => soma + i.quantidade, 0);
   }
 
+  vazio(): boolean {
+    return this.itens.length === 0;
+  }
+
   limpar() {
      this.itens = [];
   }

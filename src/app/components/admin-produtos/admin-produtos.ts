@@ -17,6 +17,7 @@ export class AdminProdutos implements OnInit {
   listaProdutos: Produto[] = [];
 
   ngOnInit(): void {
+
     this.service.listar().subscribe({
       next: (produtos) => {
         this.listaProdutos = produtos;

@@ -3,7 +3,7 @@
 
   <h1>Finalizar compra</h1>
 
-  @if (carrinhoService.itens.length === 0) {
+  @if (carrinhoService.vazio()) {
 
     <p>Seu carrinho está vazio. Adicione algum produto antes de finalizar.</p>
 
@@ -33,11 +33,11 @@
 
       <div class="opcoes">
 
-        <button type="button" (click)="irParaLogin()">
+        <button type="button" routerLink="/login">
           Já sou cadastrado
         </button>
 
-        <button type="button" (click)="irParaCadastro()">
+        <button type="button" routerLink="/cadastro-cliente">
           Não sou cadastrado
         </button>
 

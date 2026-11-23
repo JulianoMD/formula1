@@ -1,13 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-
 import { ProdutosService } from '../../services/produtos';
-
 import { CarrinhoService } from '../../services/carrinho';
 import { Produto } from '../../model/produto';
-
 
 @Component({
   selector: 'app-produtos',
@@ -28,7 +24,6 @@ export class Produtos implements OnInit {
       this.listaProdutos = produtos;
     });
   }
-
 
   adicionar(produto: Produto) {
     this.carrinhoService.adicionar(produto);

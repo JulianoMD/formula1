@@ -10,7 +10,6 @@
       name="email"
       type="email"
       placeholder="Digite seu email"
-      (keyup)="validarFormulario()"
       [(ngModel)]="login"
     />
 
@@ -22,14 +21,13 @@
       name="input-senha"
       type="password"
       placeholder="Digite sua senha"
-      (keyup)="validarFormulario()"
       [(ngModel)]="senha"
     />
 
     <button
       class="input-submeter"
       type="button"
-      [disabled]="botaoDesabilitado"
+      [disabled]="botaoDesabilitado()"
       (click)="fazerLogin()"
     >
       Confirmar

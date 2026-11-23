@@ -1,8 +1,8 @@
-
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CarrinhoService } from '../../services/carrinho';
-import { ClienteService } from '../../services/clientes';
+import { PedidosService } from '../../services/pedidos';
+import { Pedido } from '../../model/pedido';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -10,43 +10,32 @@ import { ClienteService } from '../../services/clientes';
   templateUrl: './finalizar-compra.html',
   styleUrl: './finalizar-compra.css',
 })
-export class FinalizarCompra implements OnInit {
+export class FinalizarCompra {
 
   router = inject(Router);
   carrinhoService = inject(CarrinhoService);
-  clienteService = inject(ClienteService);
+  pedidosService = inject(PedidosService);
 
-  clienteLogado: boolean = false;
-
-  ngOnInit(): void {
-
-    if (this.clienteService.tipoUsuario === 'cliente') {
-      this.clienteLogado = true;
-    }
-
-  }
-
-  irParaLogin() {
-    this.router.navigate(['/login']);
-  }
-
-  irParaCadastro() {
-    this.router.navigate(['/cadastro-cliente']);
-  }
+  clienteLogado: boolean = sessionStorage.getItem('tipoUsuario') === 'cliente';
 
   confirmarCompra() {
 
-    if (this.clienteLogado) {
+    const pedido: Pedido = {
+      emailCliente: sessionStorage.getItem('emailUsuario') ?? '',
+      itens: this.carrinhoService.itens,
+      total: this.carrinhoService.total(),
+      data: new Date().toLocaleString('pt-BR')
+    };
 
-      alert('Compra realizada com sucesso!');
-
-      this.carrinhoService.limpar();
-
-      this.router.navigate(['/']);
-
-    }
+    this.pedidosService.salvar(pedido).subscribe({
+      next: (pedidoSalvo) => {
+        alert(`Compra realizada com sucesso! Pedido nº ${pedidoSalvo.id}`);
+        this.carrinhoService.limpar();
+        this.router.navigate(['/']);
+      },
+      error: () => alert('Erro ao salvar o pedido.')
+    });
 
   }
 
 }
-

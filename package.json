@@ -6,6 +6,7 @@
     "start": "ng serve",
     "api": "json-server backend/db.json",
     "build": "ng build",
+    "deploy": "ng build --base-href /formula1/ && npx angular-cli-ghpages --dir=dist/formula1/browser",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,

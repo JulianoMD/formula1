@@ -6,7 +6,6 @@ import { Cliente } from '../../model/cliente';
 
 @Component({
   selector: 'app-admin-clientes',
-  standalone: true,
   imports: [RouterLink],
   templateUrl: './admin-cliente.html',
   styleUrl: './admin-cliente.css'
@@ -18,7 +17,29 @@ export class AdminClientes implements OnInit {
   listaClientes: Cliente[] = [];
 
   ngOnInit(): void {
-    this.listaClientes = this.service.listar();
+
+    this.service.listar().subscribe({
+      next: (clientes) => {
+        this.listaClientes = clientes;
+      }
+    });
+
+  }
+
+  excluir(id: string) {
+
+    if (confirm('Deseja realmente excluir o cliente?')) {
+
+      this.service.excluir(id).subscribe({
+        next: () => {
+          this.listaClientes = this.listaClientes.filter(
+            cliente => cliente.id !== id
+          );
+        }
+      });
+
+    }
+
   }
 
 }

@@ -22,7 +22,7 @@
     </div>
 
     <div class="hero-imagem">
-      <img src="/imagens/home.gif" alt="Carro de Fórmula 1">
+      <img src="imagens/home.gif" alt="Carro de Fórmula 1">
     </div>
 
   </div>
@@ -56,6 +56,32 @@
         <h3>Feito para quem ama velocidade</h3>
         <p>Uma coleção para fãs que levam a paixão pela F1 além das pistas.</p>
       </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-heading">
+      <p class="eyebrow">NOSSOS MODELOS</p>
+
+      <h2>Miniaturas disponíveis na loja.</h2>
+    </div>
+
+    <div class="produtos-grid">
+
+      @for (produto of listaProdutos; track produto.id) {
+        <a class="produto-card" routerLink="/produtos">
+          <div class="produto-imagem" [style.background]="produto.cor">
+            <img [src]="produto.imagem" [alt]="produto.nome">
+          </div>
+          <h3>{{ produto.nome }}</h3>
+          <strong>{{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}</strong>
+        </a>
+      }
 
     </div>
 

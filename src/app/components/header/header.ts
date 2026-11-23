@@ -1,32 +1,27 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CarrinhoService } from '../../services/carrinho';
-import { ClienteService } from '../../services/clientes';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
 
-  constructor(
-    public carrinhoService: CarrinhoService,
-    public clienteService: ClienteService
-  ) {}
+  carrinhoService = inject(CarrinhoService);
 
   isAdmin(): boolean {
-    return this.clienteService.tipoUsuario === 'admin';
+    return sessionStorage.getItem('tipoUsuario') === 'admin';
   }
 
   estaLogado(): boolean {
-    return this.clienteService.tipoUsuario !== '';
+    return sessionStorage.getItem('tipoUsuario') !== null;
   }
 
   sair() {
-    this.clienteService.tipoUsuario = '';
+    sessionStorage.clear();
     alert('Você saiu da sua conta.');
   }
 

@@ -124,3 +124,33 @@ body {
   color: #606060;
   line-height: 1.5;
 }
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.produto-card {
+  color: #101010;
+  text-decoration: none;
+}
+
+.produto-imagem {
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.produto-imagem img {
+  width: 100%;
+}
+
+.produto-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.produto-card strong {
+  color: #d71920;
+}

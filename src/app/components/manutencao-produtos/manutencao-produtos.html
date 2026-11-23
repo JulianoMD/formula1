@@ -3,13 +3,7 @@
 
   <h1>Manutenção de Produtos</h1>
 
-  <h2>
-    @if (produtoId) {
-      Alterar produto
-    } @else {
-      Cadastrar produto
-    }
-  </h2>
+  <h2>{{ titulo }}</h2>
 
   <form>
 
@@ -73,11 +67,7 @@
       type="button"
       (click)="salvar()"
     >
-      @if (produtoId) {
-        Salvar alteração
-      } @else {
-        Cadastrar
-      }
+      {{ textoBotao }}
     </button>
 
   </form>

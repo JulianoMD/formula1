@@ -22,6 +22,9 @@ export class ManutencaoProdutos implements OnInit {
   produtoId: string | null =
     this.route.snapshot.paramMap.get('id');
 
+  titulo = this.produtoId ? 'Alterar produto' : 'Cadastrar produto';
+  textoBotao = this.produtoId ? 'Salvar alteração' : 'Cadastrar';
+
   ngOnInit() {
 
     if (this.produtoId) {
@@ -35,11 +38,17 @@ export class ManutencaoProdutos implements OnInit {
 
   salvar() {
 
+    if (!this.produto.nome || !this.produto.preco) {
+      alert('Preencha pelo menos o nome e o preço.');
+      return;
+    }
+
     if (this.produtoId) {
 
       this.service.alterar(this.produto).subscribe({
         next: () => {
           alert('Produto alterado com sucesso!');
+          this.router.navigate(['/admin-produtos-listar']);
         },
         error: () => alert('Erro ao alterar o produto.')
       });
@@ -49,6 +58,7 @@ export class ManutencaoProdutos implements OnInit {
       this.service.adicionar(this.produto).subscribe({
         next: () => {
           alert('Produto cadastrado com sucesso!');
+          this.router.navigate(['/admin-produtos-listar']);
         },
         error: () => alert('Erro ao cadastrar o produto.')
       });

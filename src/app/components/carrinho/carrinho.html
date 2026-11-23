@@ -1,7 +1,7 @@
 <section class="cart-page">
   <div class="container">
 
-    @if (carrinhoService.itens.length === 0) {
+    @if (carrinhoService.vazio()) {
       <div class="empty-cart">
         <div class="empty-icon">🛒</div>
         <h2>Seu carrinho está vazio</h2>
