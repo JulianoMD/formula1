@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from '../../services/clientes';
+import { Cliente } from '../../model/cliente';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,26 +15,32 @@ export class ManutencaoClientes implements OnInit {
   clientesService = inject(ClientesService);
   router = inject(Router);
 
-  clientes: any[] = [];
+  clientes: Cliente[] = [];
 
   nome: string = '';
   email: string = '';
   senha: string = '';
 
-  clienteEditando: any = null;
+  clienteEditando: Cliente | null = null;
 
- ngOnInit(): void {
+  ngOnInit(): void {
 
-  const tipoUsuario = sessionStorage.getItem('tipoUsuario');
+    const tipoUsuario = sessionStorage.getItem('tipoUsuario');
 
-  if (tipoUsuario !== 'admin') {
-    alert('Acesso permitido somente ao administrador.');
-    this.router.navigate(['/']);
-    return;
+    if (tipoUsuario !== 'admin') {
+      alert('Acesso permitido somente ao administrador.');
+      this.router.navigate(['/']);
+      return;
+    }
+
+    this.carregarClientes();
   }
 
-  this.clientes = this.clientesService.clientes;
-}
+  carregarClientes() {
+    this.clientesService.listar().subscribe(clientes => {
+      this.clientes = clientes;
+    });
+  }
 
   cadastrarCliente() {
 
@@ -53,31 +60,38 @@ export class ManutencaoClientes implements OnInit {
 
     if (this.clienteEditando) {
 
-      this.clienteEditando.nome = this.nome;
-      this.clienteEditando.email = this.email;
-      this.clienteEditando.senha = this.senha;
-
-      alert('Cliente alterado com sucesso!');
-
-      this.clienteEditando = null;
-
-    } else {
-
-      const cliente = {
+      const clienteAlterado: Cliente = {
+        id: this.clienteEditando.id,
         nome: this.nome,
         email: this.email,
         senha: this.senha
       };
 
-      this.clientesService.clientes.push(cliente);
+      this.clientesService.alterar(clienteAlterado).subscribe(() => {
+        alert('Cliente alterado com sucesso!');
+        this.clienteEditando = null;
+        this.limparFormulario();
+        this.carregarClientes();
+      });
 
-      alert('Cliente cadastrado com sucesso!');
+    } else {
+
+      const cliente: Cliente = {
+        id: '',
+        nome: this.nome,
+        email: this.email,
+        senha: this.senha
+      };
+
+      this.clientesService.adicionar(cliente).subscribe(() => {
+        alert('Cliente cadastrado com sucesso!');
+        this.limparFormulario();
+        this.carregarClientes();
+      });
     }
-
-    this.limparFormulario();
   }
 
-  editarCliente(cliente: any) {
+  editarCliente(cliente: Cliente) {
 
     this.clienteEditando = cliente;
 
@@ -86,13 +100,12 @@ export class ManutencaoClientes implements OnInit {
     this.senha = cliente.senha;
   }
 
-  excluirCliente(cliente: any) {
+  excluirCliente(cliente: Cliente) {
 
-    const indice = this.clientes.indexOf(cliente);
-
-    this.clientes.splice(indice, 1);
-
-    alert('Cliente excluído com sucesso!');
+    this.clientesService.excluir(cliente.id).subscribe(() => {
+      alert('Cliente excluído com sucesso!');
+      this.carregarClientes();
+    });
   }
 
   limparFormulario() {

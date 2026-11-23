@@ -15,6 +15,7 @@ export class Header {
   isAdmin(): boolean {
   return sessionStorage.getItem('tipoUsuario') === 'admin';
 }
+
   estaLogado(): boolean {
     return sessionStorage.getItem('tipoUsuario') !== null;
   }

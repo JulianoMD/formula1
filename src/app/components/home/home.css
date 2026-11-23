@@ -4,7 +4,11 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* tira a margem padrão do navegador, que deixava a faixa branca nas laterais */
+=======
+/* Remove a margem padrão do navegador */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 html,
 body {
   margin: 0;
@@ -20,7 +24,11 @@ body {
   margin: 0 auto;
 }
 
+<<<<<<< HEAD
 /* ---------- Hero: imagem ocupando a largura toda, de borda a borda ---------- */
+=======
+/* ---------- Hero: imagem ocupando toda a largura ---------- */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .hero {
   position: relative;
   overflow: hidden;
@@ -29,7 +37,11 @@ body {
   color: white;
 }
 
+<<<<<<< HEAD
 /* escurece o lado esquerdo para o texto ficar legível sobre a foto */
+=======
+/* Escurece a imagem para melhorar a leitura do texto */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .hero::after {
   content: "";
   position: absolute;
@@ -37,12 +49,28 @@ body {
   z-index: 1;
   pointer-events: none;
   background:
+<<<<<<< HEAD
     linear-gradient(90deg, rgba(16, 16, 16, 0.88) 0%, rgba(16, 16, 16, 0.55) 40%, rgba(16, 16, 16, 0) 75%),
     linear-gradient(0deg, rgba(16, 16, 16, 0.7) 0%, rgba(16, 16, 16, 0) 35%);
 }
 
 /* IMPORTANTE: sem "position: relative" aqui, senão a imagem (absolute)
    se prende na largura deste bloco e deixa faixas nas laterais */
+=======
+    linear-gradient(
+      90deg,
+      rgba(16, 16, 16, 0.88) 0%,
+      rgba(16, 16, 16, 0.55) 40%,
+      rgba(16, 16, 16, 0) 75%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(16, 16, 16, 0.7) 0%,
+      rgba(16, 16, 16, 0) 35%
+    );
+}
+
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .hero-content {
   position: static;
   display: flex;
@@ -57,7 +85,11 @@ body {
   max-width: 620px;
 }
 
+<<<<<<< HEAD
 /* o antigo "card" vira o fundo inteiro do hero */
+=======
+/* Imagem de fundo do hero */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .hero-card {
   position: absolute;
   inset: 0;
@@ -79,7 +111,11 @@ body {
   object-position: 70% center;
 }
 
+<<<<<<< HEAD
 /* alinhado na mesma margem do título; traço vermelho em cima do texto */
+=======
+/* Texto superior com detalhe vermelho */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .eyebrow {
   display: inline-block;
   margin: 0 0 18px;
@@ -90,7 +126,11 @@ body {
   font-weight: 600;
 }
 
+<<<<<<< HEAD
 /* branco apenas sobre fundos escuros */
+=======
+/* Texto branco sobre fundos escuros */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .hero .eyebrow,
 .cta-section .eyebrow {
   color: white;
@@ -118,6 +158,7 @@ body {
   margin-top: 32px;
 }
 
+/* ---------- Botões ---------- */
 .button {
   display: inline-flex;
   align-items: center;
@@ -167,14 +208,17 @@ body {
   margin-bottom: 44px;
 }
 
-.section-heading h2,
-.cta-content h2 {
+.section-heading h2 {
   margin: 0;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.08;
 }
 
+<<<<<<< HEAD
 /* destaques sem caixas: só uma linha vermelha no topo de cada coluna */
+=======
+/* Destaques em três colunas */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -185,10 +229,13 @@ body {
   padding: 18px 0 0;
   border-top: 3px solid #d71920;
   background: transparent;
+<<<<<<< HEAD
 }
 
 .feature-card span {
   font-size: 28px;
+=======
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 }
 
 .feature-card h3 {
@@ -202,7 +249,11 @@ body {
   line-height: 1.55;
 }
 
+<<<<<<< HEAD
 /* ---------- Chamada final: faixa de largura total ---------- */
+=======
+/* ---------- Chamada final ---------- */
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
 .cta-section {
   padding: 0;
   background: #181818;
@@ -238,7 +289,16 @@ body {
   }
 
   .hero::after {
+<<<<<<< HEAD
     background: linear-gradient(0deg, rgba(16, 16, 16, 0.92) 0%, rgba(16, 16, 16, 0.5) 55%, rgba(16, 16, 16, 0.2) 100%);
+=======
+    background: linear-gradient(
+      0deg,
+      rgba(16, 16, 16, 0.92) 0%,
+      rgba(16, 16, 16, 0.5) 55%,
+      rgba(16, 16, 16, 0.2) 100%
+    );
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
   }
 
   .hero-card-img {
@@ -258,6 +318,16 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 48px 0;
+<<<<<<< HEAD
+=======
+  }
+}
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+>>>>>>> e6060b65e0e0bab2fe294e439b161e001482c4cd
   }
 }
 
