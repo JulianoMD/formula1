@@ -15,4 +15,12 @@ export class Carrinho {
   // Injeta o CarrinhoService para o HTML conseguir ler os itens e chamar adicionar, diminuir, remover e total
   carrinhoService = inject(CarrinhoService);
 
+  // Controla a exibição da mensagem após finalizar a compra
+  compraFinalizada = false;
+
+  // Dispara quando o usuário clica em "Finalizar compra"
+  finalizarCompra(): void {
+    this.compraFinalizada = true;
+  }
+
 }

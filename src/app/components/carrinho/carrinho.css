@@ -13,7 +13,7 @@
   padding: 54px 0 80px;
 }
 
- /*Caixa branca exibida quando o carrinho estiver vazio*/
+/* Caixa branca exibida quando o carrinho estiver vazio */
 .empty-cart {
   padding: 60px 24px;
   background-color: #ffffff;
@@ -33,7 +33,7 @@
   font-size: 16px;
 }
 
-/* Lista que empilha os cards de produtos um abaixo do outro*/
+/* Lista que empilha os cards de produtos um abaixo do outro */
 .cart-list {
   display: flex;
   flex-direction: column;
@@ -131,6 +131,23 @@
   background-color: #b9151b;
 }
 
+/* Mensagem exibida após clicar em Finalizar compra */
+.mensagem-sucesso {
+  padding: 18px 22px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #16a34a;
+  border-left: 5px solid #16a34a;
+  border-radius: 8px;
+}
+
+.mensagem-sucesso p {
+  margin: 0;
+  color: #15803d;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 /* Responsividade: ajusta a largura e quebra os botões em telas pequenas */
 @media (max-width: 700px) {
   .cart-container {
@@ -140,5 +157,9 @@
 
   .cart-actions {
     flex-wrap: wrap;
+  }
+
+  .mensagem-sucesso {
+    padding: 16px;
   }
 }
