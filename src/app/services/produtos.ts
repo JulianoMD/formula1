@@ -1,36 +1,34 @@
-
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Produto } from '../model/produto';
 
 @Injectable({
   providedIn: 'root',
-})
-export class ProdutosService {
+  })
+  export class ProdutosService {
 
-  http = inject(HttpClient);
+    http = inject(HttpClient);
 
-  url = 'http://localhost:3000/produtos';
+      url = 'http://localhost:3000/produtos';
+        listar() {
+            return this.http.get<Produto[]>(this.url);
+              }
 
-  listar() {
-    return this.http.get<Produto[]>(this.url);
-  }
+                adicionar(produto: Produto) {
+                    return this.http.post<Produto>(this.url, produto);
+                      }
 
-  adicionar(produto: Produto) {
-    return this.http.post<Produto>(this.url, produto);
-  }
+                        buscarPorId(id: string) {
+                            return this.http.get<Produto>(`${this.url}/${id}`);
+                              }
 
-  buscarPorId(id: string) {
-    return this.http.get<Produto>(`${this.url}/${id}`);
-  }
+                                alterar(produto: Produto) {
+                                    return this.http.put<Produto>(`${this.url}/${produto.id}`, produto);
+                                      }
 
-  alterar(produto: Produto) {
-    return this.http.put<Produto>(`${this.url}/${produto.id}`, produto);
-  }
+                                        excluir(id: string) {
+                                            return this.http.delete(`${this.url}/${id}`);
+                                              }
 
-  excluir(id: string) {
-    return this.http.delete(`${this.url}/${id}`);
-  }
-
-}
+                                              }
 

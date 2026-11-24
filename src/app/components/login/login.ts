@@ -64,12 +64,4 @@ export class LoginComponent {
     }
   }
 
-  onBotaoClicado() {
-    alert("Botão clicado");
-  }
-
-  teclaDigitada() {
-    alert("Usuário digitou uma tecla");
-  }
-
 }

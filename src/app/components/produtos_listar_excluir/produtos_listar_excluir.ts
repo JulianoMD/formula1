@@ -5,11 +5,12 @@ import { ProdutosService } from '../../services/produtos';
 import { Produto } from '../../model/produto';
 
 @Component({
-  selector: 'app-admin-produtos',
-  imports: [RouterLink],
-  templateUrl: './admin-produtos.html',
-  styleUrl: './admin-produtos.css',
-})
+    selector: 'app-admin-produtos',
+      imports: [RouterLink],
+        templateUrl: './produtos_listar_excluir.html',
+          styleUrl: './produtos_listar_excluir.css',
+          })
+
 export class AdminProdutos implements OnInit {
 
   private service = inject(ProdutosService);

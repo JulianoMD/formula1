@@ -1,88 +1,84 @@
 <div class="cart-container">
 
-  <h1>Meu carrinho</h1>
+    <h1>Meu carrinho</h1>
 
-  <!-- verifica se a lista de itens do carrinho está vazia -->
-  @if (carrinhoService.itens.length === 0) {
+      <!-- Verifica se o carrinho está vazio -->
+        @if (carrinhoService.itens.length === 0) {
 
-    <!-- Bloco exibido quando não há nenhum produto no carrinho -->
-    <div class="empty-cart">
-      <h2>Seu carrinho está vazio!</h2>
-      <p>Adicione miniaturas para vê-las aqui.</p>
-      <!-- routerLink navega para a página de produtos sem recarregar o site -->
-      <a routerLink="/produtos" class="checkout-button">Ver produtos</a>
-    </div>
+            <div class="empty-cart">
 
-  } @else {
+                  <h2>Seu carrinho está vazio!</h2>
 
-  
-    <div class="cart-list">
+                        <p>Adicione miniaturas para vê-las aqui.</p>
 
+                              <a routerLink="/produtos" class="checkout-button">
+                                      Ver produtos
+                                            </a>
 
-      @for (item of carrinhoService.itens; track item.produto.id) {
+                                                </div>
 
-        <div class="cart-item">
+                                                  } @else {
 
-          
-          <h2>{{ item.produto.nome }}</h2>
+                                                      <div class="cart-list">
 
-          <!-- formata o preço com 2 casas decimais -->
-          <p>Preço: R$ {{ item.produto.preco.toFixed(2) }}</p>
+                                                            @for (item of carrinhoService.itens; track item.produto.id) {
 
-          <p>Quantidade: {{ item.quantidade }}</p>
+                                                                    <div class="cart-item">
 
-        
-          <div class="cart-actions">
+                                                                              <h2>{{ item.produto.nome }}</h2>
 
-            <!-- Diminui 1 unidade do produto -->
-            <button
-              type="button"
-              (click)="carrinhoService.diminuir(item.produto.id)">
-              -
-            </button>
+                                                                                        <p>Preço: R$ {{ item.produto.preco }}</p>
 
-            <!-- Aumenta 1 unidade do produto -->
-            <button
-              type="button"
-              (click)="carrinhoService.adicionar(item.produto)">
-              +
-            </button>
+                                                                                                  <p>Quantidade: {{ item.quantidade }}</p>
 
-            <!-- Remove o produto inteiro do carrinho -->
-            <button
-              type="button"
-              (click)="carrinhoService.remover(item.produto.id)">
-              Excluir produto
-            </button>
+                                                                                                            <div class="cart-actions">
 
-          </div>
+                                                                                                                        <button
+                                                                                                                                      type="button"
+                                                                                                                                                    (click)="carrinhoService.diminuir(item.produto.id)">
+                                                                                                                                                                  -
+                                                                                                                                                                              </button>
 
-        </div>
+                                                                                                                                                                                          <button
+                                                                                                                                                                                                        type="button"
+                                                                                                                                                                                                                      (click)="carrinhoService.adicionar(item.produto)">
+                                                                                                                                                                                                                                    +
+                                                                                                                                                                                                                                                </button>
 
-      }
+                                                                                                                                                                                                                                                            <button
+                                                                                                                                                                                                                                                                          type="button"
+                                                                                                                                                                                                                                                                                        (click)="carrinhoService.remover(item.produto.id)">
+                                                                                                                                                                                                                                                                                                      Excluir produto
+                                                                                                                                                                                                                                                                                                                  </button>
 
-    </div>
+                                                                                                                                                                                                                                                                                                                            </div>
 
-    <!-- Caixa de resumo do pedido com quantidade total, valor total e botão de finalizar -->
-    <div class="cart-summary">
+                                                                                                                                                                                                                                                                                                                                    </div>
 
-      <h2>Resumo do pedido</h2>
+                                                                                                                                                                                                                                                                                                                                          }
 
-      <!-- serviço para mostrar o total de peças -->
-      <p>Quantidade de itens: {{ carrinhoService.quantidade() }}</p>
+                                                                                                                                                                                                                                                                                                                                              </div>
 
-  
-      <p class="total-row">
-        <strong>Total: R$ {{ carrinhoService.total().toFixed(2) }}</strong>
-      </p>
+                                                                                                                                                                                                                                                                                                                                                  <div class="cart-summary">
 
-      <!-- Link com routerLink que leva para a tela de finalizar compra-->
-      <a routerLink="/finalizar-compra" class="checkout-button">
-        Finalizar compra
-      </a>
+                                                                                                                                                                                                                                                                                                                                                        <h2>Resumo do pedido</h2>
 
-    </div>
+                                                                                                                                                                                                                                                                                                                                                              <p>
+                                                                                                                                                                                                                                                                                                                                                                      Quantidade de itens: {{ carrinhoService.quantidade() }}
+                                                                                                                                                                                                                                                                                                                                                                            </p>
 
-  }
+                                                                                                                                                                                                                                                                                                                                                                                  <p class="total-row">
+                                                                                                                                                                                                                                                                                                                                                                                          <strong>
+                                                                                                                                                                                                                                                                                                                                                                                                    Total: R$ {{ carrinhoService.total() }}
+                                                                                                                                                                                                                                                                                                                                                                                                            </strong>
+                                                                                                                                                                                                                                                                                                                                                                                                                  </p>
 
-</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <a routerLink="/finalizar-compra" class="checkout-button">
+                                                                                                                                                                                                                                                                                                                                                                                                                                Finalizar compra
+                                                                                                                                                                                                                                                                                                                                                                                                                                      </a>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>

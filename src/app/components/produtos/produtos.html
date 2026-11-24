@@ -1,91 +1,85 @@
 <section class="products-page">
 
-  <div class="container">
+    <div class="container">
 
-    <div class="page-heading">
+        <div class="page-heading">
 
-      <div>
-        <p class="eyebrow">CATÁLOGO</p>
+              <div>
+                      <p class="eyebrow">CATÁLOGO</p>
 
-        <h1>Miniaturas de Fórmula 1</h1>
+                              <h1>Miniaturas de Fórmula 1</h1>
 
-        <p>
-          Escolha um modelo para adicionar ao seu carrinho.
-        </p>
-      </div>
+                                      <p>
+                                                Escolha um modelo para adicionar ao seu carrinho.
+                                                        </p>
+                                                              </div>
 
-      <a routerLink="/carrinho" class="cart-button">
-        Carrinho ({{ carrinhoService.quantidade() }})
-      </a>
+                                                                    <a routerLink="/carrinho" class="cart-button">
+                                                                            Carrinho ({{ carrinhoService.quantidade() }})
+                                                                                  </a>
 
-    </div>
+                                                                                      </div>
 
-    @if (mensagem) {
+                                                                                          @if (mensagem) {
+                                                                                                <div class="message">
+                                                                                                        {{ mensagem }}
+                                                                                                              </div>
+                                                                                                                  }
 
-      <div class="message">
-        {{ mensagem }}
-      </div>
+                                                                                                                      <div class="product-grid">
 
-    }
+                                                                                                                            @for (produto of listaProdutos; track produto.id) {
 
-    <div class="product-grid">
+                                                                                                                                    <article class="product-card">
 
-      @for (
-        produto of listaProdutos;
-        track produto.id
-      ) {
+                                                                                                                                              <div
+                                                                                                                                                          class="product-image"
+                                                                                                                                                                      [style.background]="produto.cor"
+                                                                                                                                                                                >
 
-        <article class="product-card">
+                                                                                                                                                                                            @if (produto.imagem) {
+                                                                                                                                                                                                          <img [src]="produto.imagem" [alt]="produto.nome">
+                                                                                                                                                                                                                      }
 
-          <div
-            class="product-image"
-            [style.background]="produto.cor"
-          >
+                                                                                                                                                                                                                                </div>
 
-            @if (produto.imagem) {
-              <img [src]="produto.imagem" [alt]="produto.nome">
-            }
+                                                                                                                                                                                                                                          <div class="product-body">
 
+                                                                                                                                                                                                                                                      <p class="category">
+                                                                                                                                                                                                                                                                    {{ produto.categoria }}
+                                                                                                                                                                                                                                                                                </p>
 
-          </div>
+                                                                                                                                                                                                                                                                                            <h2>
+                                                                                                                                                                                                                                                                                                          {{ produto.nome }}
+                                                                                                                                                                                                                                                                                                                      </h2>
 
-          <div class="product-body">
+                                                                                                                                                                                                                                                                                                                                  <p class="description">
+                                                                                                                                                                                                                                                                                                                                                {{ produto.descricao }}
+                                                                                                                                                                                                                                                                                                                                                            </p>
 
-            <p class="category">
-              {{ produto.categoria }}
-            </p>
+                                                                                                                                                                                                                                                                                                                                                                        <div class="product-footer">
 
-            <h2>
-              {{ produto.nome }}
-            </h2>
+                                                                                                                                                                                                                                                                                                                                                                                      <strong>
+                                                                                                                                                                                                                                                                                                                                                                                                      R$ {{ produto.preco }}
+                                                                                                                                                                                                                                                                                                                                                                                                                    </strong>
 
-            <p class="description">
-              {{ produto.descricao }}
-            </p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                  <button
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  type="button"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  (click)="adicionar(produto)"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Adicionar
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </button>
 
-            <div class="product-footer">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
 
-              <strong>
-                {{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}
-              </strong>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
 
-              <button
-                type="button"
-                (click)="adicionar(produto)"
-              >
-                Adicionar
-              </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </article>
 
-            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
 
-          </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
 
-        </article>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
 
-      }
-
-    </div>
-
-  </div>
-
-</section>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </section>
