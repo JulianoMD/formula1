@@ -15,7 +15,18 @@ import { Produto } from '../../model/produto';
           private produtosService = inject(ProdutosService);
             carrinhoService = inject(CarrinhoService);
 
-              listaProdutos: Produto[] = [];
+              
+              private readonly produtoTeste: Produto = {
+                id: '999',
+                nome: 'Miniatura Ferrari SF-24 (Teste)',
+                categoria: 'Escala 1:43',
+                descricao: 'Item de teste para validar exibição e adição ao carrinho.',
+                preco: 149.9,
+                cor: '#dc0000',
+                imagem: '',
+              };
+
+              listaProdutos: Produto[] = [this.produtoTeste];
 
                 mensagem = '';
 

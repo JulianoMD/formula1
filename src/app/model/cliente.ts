@@ -5,5 +5,5 @@ export interface Cliente {
   sobrenome: string;
   dataNascimento: string;
   email: string;
-  senha: string;
+  senha: string; 
 }
