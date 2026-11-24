@@ -31,6 +31,7 @@
           <th>Nome</th>
           <th>Sobrenome</th>
           <th>Data de Nascimento</th>
+          <th>Ações</th>
         </tr>
       </thead>
 
@@ -41,6 +42,16 @@
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.sobrenome }}</td>
             <td>{{ cliente.dataNascimento }}</td>
+            <td>
+              @if (cliente.id){
+                <button class="botao-editar" type="button"
+                        [routerLink]="['/cadastro-cliente', cliente.id]">Editar</button>
+                <button class="botao-excluir" type="button"
+                        (click)="excluir(cliente.id)">Excluir</button>
+
+              }
+              
+            </td>
           </tr>
         }
       </tbody>

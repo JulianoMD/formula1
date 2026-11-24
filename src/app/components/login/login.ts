@@ -30,8 +30,6 @@ export class LoginComponent {
 
   fazerLogin() {
 
-    console.log(this.clienteService.listar());
-
     if (this.login === 'admin@email.com' && this.senha === '123') {
 
       this.clienteService.tipoUsuario = 'admin';
@@ -41,25 +39,27 @@ export class LoginComponent {
 
     } else {
 
-      let encontrou = false;
+      this.clienteService.listar().subscribe({
+        next: (clientes) => {
+          let encontrou = false;
 
-      for (let cliente of this.clienteService.listar()) {
+          for (let cliente of clientes) {
+            if (cliente.email === this.login && cliente.senha === this.senha) {
+              encontrou = true;
+              this.clienteService.tipoUsuario = 'cliente';
+              break;
+            }
+          }
 
-        if (cliente.email === this.login && cliente.senha === this.senha) {
-
-          encontrou = true;
-          this.clienteService.tipoUsuario = 'cliente';
-          break;
-
-        }
-      }
-
-      if (encontrou) {
-        alert(`Bem-vindo ${this.login}!`);
-        this.router.navigate(['/']);
-      } else {
-        alert('Dados inválidos');
-      }
+          if (encontrou) {
+            alert(`Bem-vindo ${this.login}!`);
+            this.router.navigate(['/']);
+          } else {
+            alert('Dados inválidos');
+          }
+        },
+        error: () => alert('Erro ao consultar clientes na API.')
+      });
 
     }
   }
@@ -73,4 +73,3 @@ export class LoginComponent {
   }
 
 }
-

@@ -1,4 +1,3 @@
-
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ClienteService } from '../../services/clientes';
@@ -18,7 +17,23 @@ export class AdminClientes implements OnInit {
   listaClientes: Cliente[] = [];
 
   ngOnInit(): void {
-    this.listaClientes = this.service.listar();
+    this.service.listar().subscribe({
+      next: (clientes) => {
+        this.listaClientes = clientes;
+        error: () => alert('Erro ao consultar clientes.')
+      }
+    });
+  }
+
+  excluir(id: string | undefined): void {
+    if (id !== undefined && confirm('Deseja realmente excluir o cliente?')) {
+      this.service.excluir(id).subscribe({
+        next: () => {
+          this.listaClientes = this.listaClientes.filter(cliente => cliente.id !== id);
+        },
+        error: () => alert('Erro ao excluir o cliente.')
+      });
+    }
   }
 
 }

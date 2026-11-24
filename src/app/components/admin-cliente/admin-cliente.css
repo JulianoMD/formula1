@@ -1,69 +1,131 @@
 .content-container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
+  width: 80%;
+  margin: 50px auto 0;
 }
 
-.content-container h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #222;
+.subtitulo {
+  color: #e10600;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
-.content-container p {
-    color: #666;
-    margin-bottom: 25px;
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
 }
 
-button {
-    background-color: #e10600;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-bottom: 25px;
-    transition: 0.3s;
+.cabecalho h1 {
+  margin: 8px 0;
+  color: #222;
+  font-size: 32px;
 }
 
-button:hover {
-    background-color: #b30500;
+.cabecalho p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.botao-novo {
+  padding: 12px 22px;
+  color: #ffffff;
+  background-color: #e10600;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-novo:hover {
+  background-color: #b30500;
+}
+
+.tabela-container {
+  overflow-x: auto;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 table {
-    width: 100%;
-    max-width: 1100px;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  border-collapse: collapse;
 }
 
 thead {
-    background-color: #e10600;
-    color: white;
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  background-color: #e10600;
+  color: #ffffff;
 }
 
 th {
-    font-weight: bold;
+  padding: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 15px;
+  color: #475569;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
 }
 
 tbody tr:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
+}
+
+.acoes {
+  white-space: nowrap;
+}
+
+.botao-editar,
+.botao-excluir {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-editar {
+  margin-right: 8px;
+  background-color: #0055b8;
+}
+
+.botao-editar:hover {
+  background-color: #003b7a;
+}
+
+.botao-excluir {
+  background-color: #dc2626;
+}
+
+.botao-excluir:hover {
+  background-color: #b91c1c;
+}
+
+@media (max-width: 700px) {
+  .content-container {
+    width: 90%;
+  }
+
+  .cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 }

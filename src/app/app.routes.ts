@@ -45,8 +45,5 @@ export const routes: Routes = [
     path: 'verstappen',
     component: VertappenTest,
   },
-  {
-    path: '**',
-    redirectTo: '',
-  },
+  
 ];
