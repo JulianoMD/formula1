@@ -1,54 +1,88 @@
-<section class="cart-page">
-  <div class="container">
+<div class="cart-container">
 
-    @if (carrinhoService.itens.length === 0) {
-      <div class="empty-cart">
-        <div class="empty-icon">🛒</div>
-        <h2>Seu carrinho está vazio</h2>
-        <p>Adicione miniaturas para vê-las aqui.</p>
-        <a routerLink="/produtos" class="button">Ver produtos</a>
-      </div>
-    } @else {
-      <div class="cart-layout">
-        <div class="cart-list">
-          @for (item of carrinhoService.itens; track item.produto.id) {
-            <article class="cart-item">
-              <div class="cart-item-image" [style.background]="item.produto.cor"></div>
+  <h1>Meu carrinho</h1>
 
-              <div class="cart-item-info">
-                <p>{{ item.produto.categoria }}</p>
-                <h2>{{ item.produto.nome }}</h2>
-                <strong>{{ item.produto.preco | currency:'BRL':'symbol':'1.2-2' }}</strong>
-                <span> x {{ item.quantidade }}</span>
-              </div>
+  <!-- verifica se a lista de itens do carrinho está vazia -->
+  @if (carrinhoService.itens.length === 0) {
 
-              <button type="button" class="remove-button"
-                      (click)="carrinhoService.remover(item.produto.id)">
-                Remover
-              </button>
-            </article>
-          }
+    <!-- Bloco exibido quando não há nenhum produto no carrinho -->
+    <div class="empty-cart">
+      <h2>Seu carrinho está vazio!</h2>
+      <p>Adicione miniaturas para vê-las aqui.</p>
+      <!-- routerLink navega para a página de produtos sem recarregar o site -->
+      <a routerLink="/produtos" class="checkout-button">Ver produtos</a>
+    </div>
+
+  } @else {
+
+  
+    <div class="cart-list">
+
+
+      @for (item of carrinhoService.itens; track item.produto.id) {
+
+        <div class="cart-item">
+
+          
+          <h2>{{ item.produto.nome }}</h2>
+
+          <!-- formata o preço com 2 casas decimais -->
+          <p>Preço: R$ {{ item.produto.preco.toFixed(2) }}</p>
+
+          <p>Quantidade: {{ item.quantidade }}</p>
+
+        
+          <div class="cart-actions">
+
+            <!-- Diminui 1 unidade do produto -->
+            <button
+              type="button"
+              (click)="carrinhoService.diminuir(item.produto.id)">
+              -
+            </button>
+
+            <!-- Aumenta 1 unidade do produto -->
+            <button
+              type="button"
+              (click)="carrinhoService.adicionar(item.produto)">
+              +
+            </button>
+
+            <!-- Remove o produto inteiro do carrinho -->
+            <button
+              type="button"
+              (click)="carrinhoService.remover(item.produto.id)">
+              Excluir produto
+            </button>
+
+          </div>
+
         </div>
 
-        <aside class="summary">
-          <p>Resumo do pedido</p>
+      }
 
-          <div class="summary-row">
-            <span>Itens</span>
-            <span>{{ carrinhoService.quantidade() }}</span>
-          </div>
+    </div>
 
-          <div class="summary-row total-row">
-            <strong>Total</strong>
-            <strong>{{ carrinhoService.total() | currency:'BRL':'symbol':'1.2-2' }}</strong>
-          </div>
+    <!-- Caixa de resumo do pedido com quantidade total, valor total e botão de finalizar -->
+    <div class="cart-summary">
 
-        <a routerLink="/finalizar-compra" class="checkout-button">
-           Finalizar compra
-        </a>
-        </aside>
-      </div>
-    }
+      <h2>Resumo do pedido</h2>
 
-  </div>
-</section>
+      <!-- serviço para mostrar o total de peças -->
+      <p>Quantidade de itens: {{ carrinhoService.quantidade() }}</p>
+
+  
+      <p class="total-row">
+        <strong>Total: R$ {{ carrinhoService.total().toFixed(2) }}</strong>
+      </p>
+
+      <!-- Link com routerLink que leva para a tela de finalizar compra-->
+      <a routerLink="/finalizar-compra" class="checkout-button">
+        Finalizar compra
+      </a>
+
+    </div>
+
+  }
+
+</div>

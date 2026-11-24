@@ -3,16 +3,20 @@
 
   <h1>Finalizar compra</h1>
 
+  <!-- confere se o carrinho está vazio -->
   @if (carrinhoService.itens.length === 0) {
 
     <p>Seu carrinho está vazio. Adicione algum produto antes de finalizar.</p>
 
+    <!-- Link com routerLink para navegar até os produtos -->
     <a routerLink="/produtos">Ver produtos</a>
 
   } @else {
 
+    <!-- confere se o cliente já está logado -->
     @if (clienteLogado) {
 
+      <!-- Bloco exibido quando o cliente já fez login -->
       <div class="confirmacao">
 
         <h2>Compra pronta para finalizar</h2>
@@ -21,6 +25,7 @@
           Você está logado. Clique abaixo para confirmar sua compra.
         </p>
 
+        <!-- dispara o método confirmarCompra() -->
         <button type="button" (click)="confirmarCompra()">
           Confirmar compra
         </button>
@@ -29,14 +34,18 @@
 
     } @else {
 
+      <!-- Bloco exibido quando o cliente ainda não está logado -->
       <p>Você já possui cadastro?</p>
 
+      <!-- flex para alinhar os dois botões lado a lado -->
       <div class="opcoes">
 
+        <!-- Redireciona para a tela de login -->
         <button type="button" (click)="irParaLogin()">
           Já sou cadastrado
         </button>
 
+        <!-- Redireciona para a tela de cadastro -->
         <button type="button" (click)="irParaCadastro()">
           Não sou cadastrado
         </button>
